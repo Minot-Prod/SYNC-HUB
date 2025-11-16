@@ -1,313 +1,320 @@
-﻿// src/pages/dashboard/index.js
+import React, { useEffect, useState } from "react";
+import ShellLayout from "@/components/ShellLayout";
 
-import React from "react";
-import ShellLayout from "../../components/ShellLayout";
-import {
-  listOpportunities,
-  getOpportunitiesStats,
-} from "../../lib/services/opportunitiesService";
+export default function DashboardPage() {
+  const [metrics, setMetrics] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export async function getServerSideProps() {
-  const opportunities = listOpportunities();
-  const stats = getOpportunitiesStats();
+  useEffect(() => {
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
 
-  return {
-    props: {
-      opportunities,
-      stats,
-    },
-  };
-}
+        const res = await fetch("/api/analytics");
+        if (!res.ok) {
+          throw new Error("Erreur API analytics");
+        }
+        const json = await res.json();
+        setMetrics(json);
+      } catch (err) {
+        console.error("[Dashboard] load error:", err);
+        setError(err.message || "Erreur inconnue");
+      } finally {
+        setLoading(false);
+      }
+    }
 
-const defaultStats = {
-  total: 0,
-  byStage: {},
-  totalPipelineValue: 0,
-  totalWonValue: 0,
-};
-
-const layoutStyles = {
-  main: {
-    padding: "24px",
-    width: "100%",
-    height: "100%",
-    overflowY: "auto",
-    display: "flex",
-    flexDirection: "column",
-    gap: "24px",
-    color: "white",
-  },
-  headerTitle: { fontSize: "28px", fontWeight: 700 },
-  headerSubtitle: { color: "#cbd5f5", marginTop: "4px" },
-  metricsGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-    gap: "16px",
-  },
-  card: {
-    padding: "16px",
-    borderRadius: "16px",
-    background: "rgba(15, 23, 42, 0.75)",
-    border: "1px solid rgba(148, 163, 184, 0.4)",
-    boxShadow: "0 18px 45px rgba(15, 23, 42, 0.7)",
-  },
-  cardTitle: { fontSize: "16px", fontWeight: 600 },
-  cardNumberMain: { marginTop: "8px", fontSize: "26px", fontWeight: 700 },
-  cardCaption: {
-    marginTop: "4px",
-    fontSize: "11px",
-    color: "#94a3b8",
-  },
-  stageList: {
-    listStyle: "none",
-    padding: 0,
-    margin: "8px 0 0 0",
-    fontSize: "13px",
-  },
-  stageRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    borderBottom: "1px solid rgba(148, 163, 184, 0.25)",
-    padding: "4px 0",
-  },
-  secondaryGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-    gap: "16px",
-  },
-  listItemTitle: { fontSize: "13px", fontWeight: 600 },
-  listItemMeta: { fontSize: "11px", color: "#9ca3af" },
-  chip: {
-    display: "inline-block",
-    padding: "2px 8px",
-    borderRadius: "999px",
-    border: "1px solid rgba(148,163,184,0.6)",
-    fontSize: "11px",
-    marginRight: "6px",
-  },
-  tableSection: {
-    borderRadius: "16px",
-    background: "rgba(15, 23, 42, 0.75)",
-    border: "1px solid rgba(148, 163, 184, 0.4)",
-    boxShadow: "0 18px 45px rgba(15, 23, 42, 0.7)",
-    padding: "24px",
-  },
-  tableWrapper: { overflowX: "auto" },
-  table: {
-    width: "100%",
-    borderCollapse: "collapse",
-    fontSize: "13px",
-  },
-  th: {
-    textAlign: "left",
-    padding: "8px 12px",
-    color: "#e2e8f0",
-    borderBottom: "1px solid rgba(148, 163, 184, 0.4)",
-    fontWeight: 500,
-  },
-  td: {
-    padding: "8px 12px",
-    borderBottom: "1px solid rgba(30, 41, 59, 0.9)",
-  },
-  rowHover: {
-    cursor: "default",
-  },
-  emptyRow: {
-    padding: "16px 12px",
-    textAlign: "center",
-    color: "#94a3b8",
-  },
-};
-
-export default function DashboardPage(props) {
-  const safeOpportunities = props.opportunities || [];
-  const safeStats = props.stats || defaultStats;
-
-  const { total, byStage, totalPipelineValue, totalWonValue } = safeStats;
-
-  // Prochaines actions (triées par date)
-  const upcomingActions = [...safeOpportunities]
-    .filter((o) => o.nextActionDate)
-    .sort(
-      (a, b) =>
-        new Date(a.nextActionDate).getTime() -
-        new Date(b.nextActionDate).getTime()
-    )
-    .slice(0, 3);
-
-  // Deals les plus chauds (valeur * probabilité)
-  const hotDeals = [...safeOpportunities]
-    .map((o) => ({
-      ...o,
-      score: (o.valueEUR || 0) * (o.probability || 0),
-    }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
+    load();
+  }, []);
 
   return (
-    <ShellLayout>
-      <main style={layoutStyles.main}>
-        <header>
-          <h1 style={layoutStyles.headerTitle}>Sync GPT Hub – Dashboard</h1>
-          <p style={layoutStyles.headerSubtitle}>
-            Vue consolidée des opportunités &amp; de la performance commerciale.
-          </p>
+    <ShellLayout title="Dashboard Sync GPT Hub">
+      <div
+        style={{
+          minHeight: "100vh",
+          padding: "24px 26px",
+          background:
+            "radial-gradient(circle at top left, #020617 0, #020617 45%, #000000 100%)",
+          color: "#ffffff",
+          fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        }}
+      >
+        <header
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "24px",
+            marginBottom: "24px",
+          }}
+        >
+          <div>
+            <h1
+              style={{
+                fontSize: "28px",
+                fontWeight: 600,
+                marginBottom: "6px",
+              }}
+            >
+              Cockpit Sync GPT Hub
+            </h1>
+            <p
+              style={{
+                fontSize: "14px",
+                color: "rgba(148,163,184,0.95)",
+                maxWidth: "520px",
+              }}
+            >
+              Vue d?ensemble de ton pipeline commercial. Sacha agent Assistant
+              principal coordonne les agents (L?o, Maya, Eliot, Zo?, Nova) pour
+              t?aider ? savoir quoi traiter maintenant.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              flexWrap: "wrap",
+              alignItems: "flex-start",
+            }}
+          >
+            <button
+              style={{
+                padding: "8px 14px",
+                borderRadius: "999px",
+                border: "1px solid rgba(148,163,184,0.7)",
+                background: "rgba(15,23,42,0.98)",
+                color: "#e5e7eb",
+                fontSize: "13px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                window.location.href = "/agents";
+              }}
+            >
+              Voir les agents
+            </button>
+            <button
+              style={{
+                padding: "8px 14px",
+                borderRadius: "999px",
+                border: "none",
+                background:
+                  "linear-gradient(135deg, #00f0ff, #3b82f6, #8b5cf6)",
+                color: "#020617",
+                fontWeight: 600,
+                fontSize: "13px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                window.location.href = "/opportunities";
+              }}
+            >
+              Voir le pipeline complet
+            </button>
+          </div>
         </header>
 
-        {/* CARTES MÉTRIQUES */}
-        <section style={layoutStyles.metricsGrid}>
-          <div style={layoutStyles.card}>
-            <h2 style={layoutStyles.cardTitle}>Total opportunités</h2>
-            <p style={layoutStyles.cardNumberMain}>{total}</p>
-            <p style={layoutStyles.cardCaption}>Tous stages confondus</p>
-          </div>
-
-          <div style={layoutStyles.card}>
-            <h2 style={layoutStyles.cardTitle}>
-              Pipeline (hors deals gagnés)
-            </h2>
-            <p style={layoutStyles.cardNumberMain}>
-              {totalPipelineValue.toLocaleString("fr-FR")} €
-            </p>
-            <p style={layoutStyles.cardCaption}>
-              Prospection / proposition / négociation
-            </p>
-          </div>
-
-          <div style={layoutStyles.card}>
-            <h2 style={layoutStyles.cardTitle}>Valeur deals gagnés</h2>
-            <p style={layoutStyles.cardNumberMain}>
-              {totalWonValue.toLocaleString("fr-FR")} €
-            </p>
-            <p style={layoutStyles.cardCaption}>Cumul closed-won</p>
-          </div>
-
-          <div style={layoutStyles.card}>
-            <h2 style={layoutStyles.cardTitle}>Par stage</h2>
-            <ul style={layoutStyles.stageList}>
-              {Object.entries(byStage).map(([stage, count]) => (
-                <li key={stage} style={layoutStyles.stageRow}>
-                  <span>{stage}</span>
-                  <span>{count}</span>
-                </li>
-              ))}
-              {Object.keys(byStage).length === 0 && (
-                <li
-                  style={{
-                    fontSize: "11px",
-                    color: "#94a3b8",
-                    marginTop: 4,
-                  }}
-                >
-                  Aucune donnée pour l&apos;instant.
-                </li>
-              )}
-            </ul>
-          </div>
-        </section>
-
-        {/* PANNEAU ACTIONS & DEALS CHAUDS */}
-        <section style={layoutStyles.secondaryGrid}>
-          <div style={layoutStyles.card}>
-            <h2 style={layoutStyles.cardTitle}>Prochaines actions</h2>
-            <p style={layoutStyles.cardCaption}>
-              Les 3 prochaines actions à traiter, triées par échéance.
-            </p>
-            <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
-              {upcomingActions.length === 0 && (
-                <p style={{ fontSize: "12px", color: "#94a3b8" }}>
-                  Aucune prochaine action planifiée.
-                </p>
-              )}
-              {upcomingActions.map((opp) => (
-                <div key={opp.id}>
-                  <div style={layoutStyles.listItemTitle}>{opp.client}</div>
-                  <div style={layoutStyles.listItemMeta}>
-                    {opp.title}
-                    <br />
-                    <span style={layoutStyles.chip}>{opp.stage}</span>
-                    <span>
-                      {opp.nextActionDate} — {opp.nextAction}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={layoutStyles.card}>
-            <h2 style={layoutStyles.cardTitle}>Deals les plus chauds</h2>
-            <p style={layoutStyles.cardCaption}>
-              Triés par valeur × probabilité (score de chaleur).
-            </p>
-            <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
-              {hotDeals.length === 0 && (
-                <p style={{ fontSize: "12px", color: "#94a3b8" }}>
-                  Aucun deal chaud détecté pour l&apos;instant.
-                </p>
-              )}
-              {hotDeals.map((opp) => (
-                <div key={opp.id}>
-                  <div style={layoutStyles.listItemTitle}>
-                    {opp.client} — {opp.valueEUR.toLocaleString("fr-FR")} €
-                  </div>
-                  <div style={layoutStyles.listItemMeta}>
-                    <span style={layoutStyles.chip}>{opp.stage}</span>
-                    Probabilité : {(opp.probability * 100).toFixed(0)}% • Score :{" "}
-                    {opp.score.toLocaleString("fr-FR")}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* TABLEAU OPPORTUNITÉS */}
-        <section style={layoutStyles.tableSection}>
-          <h2
-            style={{ fontSize: "18px", fontWeight: 600, marginBottom: "12px" }}
+        {loading && (
+          <div
+            style={{
+              marginBottom: "16px",
+              fontSize: "13px",
+              color: "rgba(148,163,184,0.9)",
+            }}
           >
-            Opportunités récentes
-          </h2>
+            Chargement des KPIs?
+          </div>
+        )}
 
-          <div style={layoutStyles.tableWrapper}>
-            <table style={layoutStyles.table}>
-              <thead>
-                <tr>
-                  <th style={layoutStyles.th}>Client</th>
-                  <th style={layoutStyles.th}>Intitulé</th>
-                  <th style={layoutStyles.th}>Stage</th>
-                  <th style={layoutStyles.th}>Valeur</th>
-                  <th style={layoutStyles.th}>Prochaine action</th>
-                  <th style={layoutStyles.th}>Échéance</th>
-                </tr>
-              </thead>
-              <tbody>
-                {safeOpportunities.length === 0 && (
-                  <tr>
-                    <td style={layoutStyles.emptyRow} colSpan={6}>
-                      Aucune opportunité pour l&apos;instant.
-                    </td>
-                  </tr>
-                )}
+        {error && (
+          <div
+            style={{
+              marginBottom: "16px",
+              fontSize: "13px",
+              color: "#f97373",
+            }}
+          >
+            {error}
+          </div>
+        )}
 
-                {safeOpportunities.map((opp) => (
-                  <tr key={opp.id} style={layoutStyles.rowHover}>
-                    <td style={layoutStyles.td}>{opp.client}</td>
-                    <td style={layoutStyles.td}>{opp.title}</td>
-                    <td style={layoutStyles.td}>{opp.stage}</td>
-                    <td style={layoutStyles.td}>
-                      {opp.valueEUR.toLocaleString("fr-FR")} €
-                    </td>
-                    <td style={layoutStyles.td}>{opp.nextAction}</td>
-                    <td style={layoutStyles.td}>{opp.nextActionDate}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <section
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gap: "16px",
+          }}
+        >
+          <div
+            style={{
+              borderRadius: "16px",
+              padding: "16px 18px",
+              background:
+                "linear-gradient(135deg, rgba(56,189,248,0.12), rgba(15,23,42,0.95))",
+              border: "1px solid rgba(148,163,184,0.4)",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.7)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "rgba(148,163,184,0.9)",
+                marginBottom: "6px",
+              }}
+            >
+              Opportunit?s totales
+            </div>
+            <div
+              style={{
+                fontSize: "28px",
+                fontWeight: 600,
+              }}
+            >
+              {metrics ? metrics.totalCount : "?"}
+            </div>
+            <div
+              style={{
+                marginTop: "4px",
+                fontSize: "13px",
+                color: "rgba(148,163,184,0.9)",
+              }}
+            >
+              Toutes les opportunit?s suivies par le Hub.
+            </div>
+          </div>
+
+          <div
+            style={{
+              borderRadius: "16px",
+              padding: "16px 18px",
+              background:
+                "linear-gradient(135deg, rgba(96,165,250,0.18), rgba(15,23,42,0.95))",
+              border: "1px solid rgba(147,197,253,0.4)",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.7)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "rgba(148,163,184,0.9)",
+                marginBottom: "6px",
+              }}
+            >
+              Opportunit?s ouvertes
+            </div>
+            <div
+              style={{
+                fontSize: "28px",
+                fontWeight: 600,
+              }}
+            >
+              {metrics ? metrics.pipelineCount : "?"}
+            </div>
+            <div
+              style={{
+                marginTop: "4px",
+                fontSize: "13px",
+                color: "rgba(148,163,184,0.9)",
+              }}
+            >
+              Deals encore actifs dans ton pipeline.
+            </div>
+          </div>
+
+          <div
+            style={{
+              borderRadius: "16px",
+              padding: "16px 18px",
+              background:
+                "linear-gradient(135deg, rgba(52,211,153,0.18), rgba(15,23,42,0.95))",
+              border: "1px solid rgba(52,211,153,0.45)",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.7)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "rgba(148,163,184,0.9)",
+                marginBottom: "6px",
+              }}
+            >
+              Deals gagn?s
+            </div>
+            <div
+              style={{
+                fontSize: "28px",
+                fontWeight: 600,
+              }}
+            >
+              {metrics ? metrics.wonCount : "?"}
+            </div>
+            <div
+              style={{
+                marginTop: "4px",
+                fontSize: "13px",
+                color: "rgba(148,163,184,0.9)",
+              }}
+            >
+              Opportunit?s marqu?es Closed Won.
+            </div>
+          </div>
+
+          <div
+            style={{
+              borderRadius: "16px",
+              padding: "16px 18px",
+              background:
+                "linear-gradient(135deg, rgba(192,132,252,0.18), rgba(15,23,42,0.95))",
+              border: "1px solid rgba(192,132,252,0.45)",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.7)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "rgba(148,163,184,0.9)",
+                marginBottom: "6px",
+              }}
+            >
+              Valeur pipeline
+            </div>
+            <div
+              style={{
+                fontSize: "22px",
+                fontWeight: 600,
+              }}
+            >
+              {metrics
+                ? metrics.pipelineValue.toLocaleString("fr-CA", {
+                    style: "currency",
+                    currency: "CAD",
+                    maximumFractionDigits: 0,
+                  })
+                : "?"}
+            </div>
+            <div
+              style={{
+                marginTop: "4px",
+                fontSize: "13px",
+                color: "rgba(148,163,184,0.9)",
+              }}
+            >
+              Montant estim? des opportunit?s ouvertes.
+            </div>
           </div>
         </section>
-      </main>
+      </div>
     </ShellLayout>
   );
 }
