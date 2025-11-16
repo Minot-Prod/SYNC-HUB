@@ -139,7 +139,7 @@ export default function OpportunitiesPage({ opportunities = [] }) {
                       <span style={layoutStyles.badgeStage}>{opp.stage}</span>
                     </td>
                     <td style={layoutStyles.td}>
-                      {opp.valueEUR.toLocaleString("fr-FR")} €
+                      {opp.valueCAD.toLocaleString("fr-CA", { style: "currency", currency: "CAD" })}
                     </td>
                     <td style={layoutStyles.td}>{opp.source}</td>
                     <td style={layoutStyles.td}>{opp.nextAction}</td>

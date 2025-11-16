@@ -167,7 +167,7 @@ export default function DashboardPage(props) {
               Pipeline (hors deals gagnés)
             </h2>
             <p style={layoutStyles.cardNumberMain}>
-              {totalPipelineValue.toLocaleString("fr-FR")} €
+              {totalPipelineValue.toLocaleString("fr-CA", { style: "currency", currency: "CAD" })}
             </p>
             <p style={layoutStyles.cardCaption}>
               Prospection / proposition / négociation
@@ -177,7 +177,7 @@ export default function DashboardPage(props) {
           <div style={layoutStyles.card}>
             <h2 style={layoutStyles.cardTitle}>Valeur deals gagnés</h2>
             <p style={layoutStyles.cardNumberMain}>
-              {totalWonValue.toLocaleString("fr-FR")} €
+              {totalWonValue.toLocaleString("fr-CA", { style: "currency", currency: "CAD" })}
             </p>
             <p style={layoutStyles.cardCaption}>Cumul closed-won</p>
           </div>
@@ -249,7 +249,7 @@ export default function DashboardPage(props) {
               {hotDeals.map((opp) => (
                 <div key={opp.id}>
                   <div style={layoutStyles.listItemTitle}>
-                    {opp.client} — {opp.valueEUR.toLocaleString("fr-FR")} €
+                    {opp.client} — {opp.valueCAD.toLocaleString("fr-CA", { style: "currency", currency: "CAD" })}
                   </div>
                   <div style={layoutStyles.listItemMeta}>
                     <span style={layoutStyles.chip}>{opp.stage}</span>
@@ -297,7 +297,7 @@ export default function DashboardPage(props) {
                     <td style={layoutStyles.td}>{opp.title}</td>
                     <td style={layoutStyles.td}>{opp.stage}</td>
                     <td style={layoutStyles.td}>
-                      {opp.valueEUR.toLocaleString("fr-FR")} €
+                      {opp.valueCAD.toLocaleString("fr-CA", { style: "currency", currency: "CAD" })}
                     </td>
                     <td style={layoutStyles.td}>{opp.nextAction}</td>
                     <td style={layoutStyles.td}>{opp.nextActionDate}</td>

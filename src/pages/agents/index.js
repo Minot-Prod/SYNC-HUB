@@ -1,4 +1,4 @@
-﻿import agents from "@/data/agents.json";
+﻿import agents from "@/data/agents";
 import AgentCard from "@/components/AgentCard";
 
 export default function AgentsPage(){
