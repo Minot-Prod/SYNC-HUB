@@ -70,6 +70,21 @@ const layoutStyles = {
     borderBottom: "1px solid rgba(148, 163, 184, 0.25)",
     padding: "4px 0",
   },
+  secondaryGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: "16px",
+  },
+  listItemTitle: { fontSize: "13px", fontWeight: 600 },
+  listItemMeta: { fontSize: "11px", color: "#9ca3af" },
+  chip: {
+    display: "inline-block",
+    padding: "2px 8px",
+    borderRadius: "999px",
+    border: "1px solid rgba(148,163,184,0.6)",
+    fontSize: "11px",
+    marginRight: "6px",
+  },
   tableSection: {
     borderRadius: "16px",
     background: "rgba(15, 23, 42, 0.75)",
@@ -109,6 +124,25 @@ export default function DashboardPage(props) {
   const safeStats = props.stats || defaultStats;
 
   const { total, byStage, totalPipelineValue, totalWonValue } = safeStats;
+
+  // Prochaines actions (triées par date)
+  const upcomingActions = [...safeOpportunities]
+    .filter((o) => o.nextActionDate)
+    .sort(
+      (a, b) =>
+        new Date(a.nextActionDate).getTime() -
+        new Date(b.nextActionDate).getTime()
+    )
+    .slice(0, 3);
+
+  // Deals les plus chauds (valeur * probabilité)
+  const hotDeals = [...safeOpportunities]
+    .map((o) => ({
+      ...o,
+      score: (o.valueEUR || 0) * (o.probability || 0),
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
 
   return (
     <ShellLayout>
@@ -158,7 +192,13 @@ export default function DashboardPage(props) {
                 </li>
               ))}
               {Object.keys(byStage).length === 0 && (
-                <li style={{ fontSize: "11px", color: "#94a3b8", marginTop: 4 }}>
+                <li
+                  style={{
+                    fontSize: "11px",
+                    color: "#94a3b8",
+                    marginTop: 4,
+                  }}
+                >
                   Aucune donnée pour l&apos;instant.
                 </li>
               )}
@@ -166,9 +206,67 @@ export default function DashboardPage(props) {
           </div>
         </section>
 
+        {/* PANNEAU ACTIONS & DEALS CHAUDS */}
+        <section style={layoutStyles.secondaryGrid}>
+          <div style={layoutStyles.card}>
+            <h2 style={layoutStyles.cardTitle}>Prochaines actions</h2>
+            <p style={layoutStyles.cardCaption}>
+              Les 3 prochaines actions à traiter, triées par échéance.
+            </p>
+            <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
+              {upcomingActions.length === 0 && (
+                <p style={{ fontSize: "12px", color: "#94a3b8" }}>
+                  Aucune prochaine action planifiée.
+                </p>
+              )}
+              {upcomingActions.map((opp) => (
+                <div key={opp.id}>
+                  <div style={layoutStyles.listItemTitle}>{opp.client}</div>
+                  <div style={layoutStyles.listItemMeta}>
+                    {opp.title}
+                    <br />
+                    <span style={layoutStyles.chip}>{opp.stage}</span>
+                    <span>
+                      {opp.nextActionDate} — {opp.nextAction}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={layoutStyles.card}>
+            <h2 style={layoutStyles.cardTitle}>Deals les plus chauds</h2>
+            <p style={layoutStyles.cardCaption}>
+              Triés par valeur × probabilité (score de chaleur).
+            </p>
+            <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
+              {hotDeals.length === 0 && (
+                <p style={{ fontSize: "12px", color: "#94a3b8" }}>
+                  Aucun deal chaud détecté pour l&apos;instant.
+                </p>
+              )}
+              {hotDeals.map((opp) => (
+                <div key={opp.id}>
+                  <div style={layoutStyles.listItemTitle}>
+                    {opp.client} — {opp.valueEUR.toLocaleString("fr-FR")} €
+                  </div>
+                  <div style={layoutStyles.listItemMeta}>
+                    <span style={layoutStyles.chip}>{opp.stage}</span>
+                    Probabilité : {(opp.probability * 100).toFixed(0)}% • Score :{" "}
+                    {opp.score.toLocaleString("fr-FR")}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* TABLEAU OPPORTUNITÉS */}
         <section style={layoutStyles.tableSection}>
-          <h2 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "12px" }}>
+          <h2
+            style={{ fontSize: "18px", fontWeight: 600, marginBottom: "12px" }}
+          >
             Opportunités récentes
           </h2>
 
