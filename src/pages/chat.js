@@ -1,258 +1,318 @@
-﻿import { useState } from "react";
+﻿// src/pages/chat.js
+
+import React, { useState } from "react";
+import ShellLayout from "../components/ShellLayout";
 
 const AGENTS = [
-  { id: "sales", label: "Sales (general)" },
-  { id: "prospection", label: "Prospection" },
-  { id: "messages", label: "Messages & Scripts" },
-  { id: "analyste", label: "Analyste entreprise" },
-  { id: "radar", label: "Radar opportunites" },
+  { id: "Radar", label: "Radar (opportunités)" },
+  { id: "Sales", label: "Sales (scripts & ventes)" },
+  { id: "Prospection", label: "Prospection" },
+  { id: "Messages", label: "Messages" },
+  { id: "Analyste", label: "Analyste" },
 ];
 
+const styles = {
+  main: {
+    padding: "24px",
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    gap: "16px",
+    color: "white",
+  },
+  headerRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "baseline",
+    gap: "16px",
+  },
+  title: { fontSize: "26px", fontWeight: 700 },
+  subtitle: { color: "#cbd5f5", marginTop: "4px" },
+  layout: {
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1.4fr)",
+    gap: "16px",
+    height: "calc(100% - 80px)",
+    minHeight: 0,
+  },
+  card: {
+    borderRadius: "16px",
+    background: "rgba(15, 23, 42, 0.8)",
+    border: "1px solid rgba(148, 163, 184, 0.4)",
+    boxShadow: "0 18px 45px rgba(15, 23, 42, 0.7)",
+    padding: "16px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+    minHeight: 0,
+  },
+  label: {
+    fontSize: "13px",
+    color: "#e2e8f0",
+    marginBottom: "4px",
+  },
+  select: {
+    width: "100%",
+    padding: "8px 10px",
+    borderRadius: "999px",
+    border: "1px solid rgba(148, 163, 184, 0.7)",
+    background: "rgba(15, 23, 42, 0.8)",
+    color: "white",
+    fontSize: "13px",
+    outline: "none",
+  },
+  textarea: {
+    width: "100%",
+    minHeight: "140px",
+    resize: "vertical",
+    borderRadius: "12px",
+    border: "1px solid rgba(148, 163, 184, 0.7)",
+    background: "rgba(15, 23, 42, 0.8)",
+    color: "white",
+    padding: "10px 12px",
+    fontSize: "13px",
+    outline: "none",
+  },
+  actionsRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "12px",
+  },
+  button: {
+    borderRadius: "999px",
+    padding: "8px 18px",
+    border: "none",
+    fontSize: "13px",
+    fontWeight: 600,
+    cursor: "pointer",
+    background:
+      "linear-gradient(135deg, rgba(56,189,248,0.9), rgba(129,140,248,0.95))",
+    color: "#0b1120",
+    boxShadow: "0 12px 30px rgba(59,130,246,0.55)",
+  },
+  status: { fontSize: "12px", color: "#94a3b8" },
+  logsContainer: {
+    flex: 1,
+    borderRadius: "12px",
+    background: "rgba(15, 23, 42, 0.75)",
+    border: "1px solid rgba(30, 64, 175, 0.7)",
+    padding: "10px",
+    overflowY: "auto",
+    fontSize: "13px",
+  },
+  logItem: {
+    padding: "10px 10px",
+    borderRadius: "10px",
+    marginBottom: "8px",
+    background: "rgba(15, 23, 42, 0.9)",
+    border: "1px solid rgba(51, 65, 85, 0.9)",
+  },
+  logMeta: {
+    fontSize: "11px",
+    color: "#9ca3af",
+    marginBottom: "4px",
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "8px",
+  },
+  logUser: { marginBottom: "4px" },
+  logUserLabel: { fontSize: "11px", color: "#e5e7eb", fontWeight: 600 },
+  logUserText: { fontSize: "13px" },
+  logAgentLabel: { fontSize: "11px", color: "#a5b4fc", fontWeight: 600 },
+  logAgentText: { fontSize: "13px", color: "#e5e7eb" },
+  jsonRaw: {
+    marginTop: "6px",
+    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+    fontSize: "11px",
+    color: "#9ca3af",
+    whiteSpace: "pre-wrap",
+    background: "rgba(15,23,42,0.9)",
+    borderRadius: "6px",
+    padding: "6px 8px",
+  },
+};
+
 export default function ChatPage() {
+  const [selectedAgent, setSelectedAgent] = useState("Radar");
   const [input, setInput] = useState("");
-  const [agent, setAgent] = useState("sales");
-  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [logs, setLogs] = useState([]);
   const [error, setError] = useState("");
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSend() {
     setError("");
 
-    const trimmed = input.trim();
-    if (!trimmed) return;
+    if (!selectedAgent) {
+      setError("Sélectionne un agent avant d'envoyer.");
+      return;
+    }
 
-    const userMessage = {
-      role: "user",
-      content: trimmed,
-      agent,
-    };
+    if (!input.trim() && selectedAgent !== "Radar") {
+      setError("Ajoute un message pour cet agent.");
+      return;
+    }
 
-    setMessages((prev) => [...prev, userMessage]);
-    setInput("");
     setLoading(true);
 
     try {
-      const res = await fetch("/api/agent", {
+      const response = await fetch("/api/agent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ agent, message: trimmed }),
+        body: JSON.stringify({
+          agent: selectedAgent,
+          input: input || null,
+          context: {},
+        }),
       });
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Erreur reseau");
+      const json = await response.json();
+
+      if (!json.ok) {
+        throw new Error(json.error || "Réponse invalide de l'API");
       }
 
-      const data = await res.json();
+      const result = json.result || {};
+      const timestamp = new Date().toISOString();
 
-      const assistantMessage = {
-        role: "assistant",
-        content: data.reply || "Aucune reponse generee.",
-        agent: data.agent || agent,
-      };
+      setLogs((prev) => [
+        {
+          id: `${timestamp}-${prev.length + 1}`,
+          timestamp,
+          agent: result.agent || selectedAgent,
+          type: result.type || "unknown",
+          message: result.message || "",
+          input: input,
+          raw: result,
+        },
+        ...prev,
+      ]);
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      if (selectedAgent !== "Radar") {
+        setInput("");
+      }
     } catch (err) {
-      console.error("Chat error:", err);
-      setError(err.message || "Erreur inconnue");
+      console.error("[ChatPage] Error calling /api/agent", err);
+      setError(err.message || "Erreur lors de l'appel à l'agent.");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        padding: "16px",
-        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
-        backgroundColor: "#050816",
-        color: "#f9fafb",
-      }}
-    >
-      <header style={{ marginBottom: "16px" }}>
-        <h1 style={{ fontSize: "24px", fontWeight: 600 }}>Sync Hub — Multi-agents IA</h1>
-        <p style={{ fontSize: "14px", color: "#9ca3af" }}>
-          Hub MVP des agents de vente Sync Productions (sales, prospection, scripts, analyste, radar).
-        </p>
-      </header>
-
-      <main
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          gap: "12px",
-          maxWidth: "900px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-          }}
-        >
-          <label
-            htmlFor="agent-select"
-            style={{ fontSize: "14px", color: "#e5e7eb", minWidth: "120px" }}
-          >
-            Agent actif
-          </label>
-          <select
-            id="agent-select"
-            value={agent}
-            onChange={(e) => setAgent(e.target.value)}
-            style={{
-              padding: "8px 10px",
-              borderRadius: "999px",
-              border: "1px solid #374151",
-              backgroundColor: "#020617",
-              color: "#e5e7eb",
-              fontSize: "14px",
-              outline: "none",
-            }}
-          >
-            {AGENTS.map((a) => (
-              <option key={a.id} value={a.id}>
-                {a.label}
-              </option>
-            ))}
-          </select>
-          {loading && (
-            <span style={{ fontSize: "12px", color: "#a5b4fc" }}>
-              L&apos;agent pense...
-            </span>
-          )}
-        </div>
-
-        <div
-          style={{
-            flex: 1,
-            borderRadius: "12px",
-            padding: "12px",
-            border: "1px solid #1f2937",
-            background:
-              "radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 60%), #020617",
-            overflowY: "auto",
-          }}
-        >
-          {messages.length === 0 && (
-            <p style={{ fontSize: "14px", color: "#6b7280" }}>
-              Choisis un agent puis pose une question.  
-              Exemples : &quot;Prospection : ecris un message LinkedIn&quot;,  
-              &quot;Analyste : analyse ce type de client&quot;,  
-              &quot;Messages : donne un script d&apos;appel&quot;.
+    <ShellLayout>
+      <main style={styles.main}>
+        <header style={styles.headerRow}>
+          <div>
+            <h1 style={styles.title}>Hub des agents</h1>
+            <p style={styles.subtitle}>
+              Choisis un agent, envoie un contexte, laisse Sync GPT Hub faire le reste.
             </p>
-          )}
+          </div>
+        </header>
 
-          {messages.map((msg, index) => {
-            const isUser = msg.role === "user";
-            const bubbleAgent = msg.agent || agent;
-            return (
-              <div
-                key={index}
-                style={{
-                  marginBottom: "10px",
-                  display: "flex",
-                  justifyContent: isUser ? "flex-end" : "flex-start",
-                }}
+        <section style={styles.layout}>
+          {/* PANEL GAUCHE : INPUT */}
+          <div style={styles.card}>
+            <div>
+              <label style={styles.label}>Agent</label>
+              <select
+                style={styles.select}
+                value={selectedAgent}
+                onChange={(e) => setSelectedAgent(e.target.value)}
               >
-                <div
-                  style={{
-                    maxWidth: "75%",
-                    padding: "8px 12px",
-                    borderRadius: "12px",
-                    fontSize: "14px",
-                    backgroundColor: isUser ? "#2563eb" : "rgba(15,23,42,0.9)",
-                    color: "#f9fafb",
-                    border: isUser
-                      ? "none"
-                      : "1px solid rgba(148,163,184,0.3)",
-                    whiteSpace: "pre-wrap",
-                  }}
-                >
-                  {!isUser && (
-                    <div
-                      style={{
-                        fontSize: "11px",
-                        color: "#a5b4fc",
-                        marginBottom: "4px",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.06em",
-                      }}
-                    >
-                      Agent : {bubbleAgent}
+                {AGENTS.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label style={styles.label}>Message / Contexte</label>
+              <textarea
+                style={styles.textarea}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={
+                  selectedAgent === "Radar"
+                    ? "Tu peux laisser vide : Radar renverra juste l'état du pipeline."
+                    : "Décris le besoin pour cet agent (ex: \"Rédige un script de relance pour Studio Nord\")."
+                }
+              />
+            </div>
+
+            <div style={styles.actionsRow}>
+              <span style={styles.status}>
+                {loading
+                  ? "L'agent réfléchit..."
+                  : "Prêt. Choisis un agent, envoie un message."}
+                {error ? " — " + error : ""}
+              </span>
+              <button
+                type="button"
+                style={styles.button}
+                onClick={handleSend}
+                disabled={loading}
+              >
+                {loading ? "En cours..." : "Envoyer à l'agent"}
+              </button>
+            </div>
+          </div>
+
+          {/* PANEL DROIT : LOGS */}
+          <div style={styles.card}>
+            <h2 style={{ fontSize: "16px", fontWeight: 600 }}>
+              Historique des appels
+            </h2>
+            <div style={styles.logsContainer}>
+              {logs.length === 0 && (
+                <p style={{ fontSize: "13px", color: "#94a3b8" }}>
+                  Aucun appel pour l&apos;instant. Lance d&apos;abord Radar pour
+                  voir l&apos;état du pipeline, puis teste Sales / Prospection.
+                </p>
+              )}
+
+              {logs.map((log) => (
+                <div key={log.id} style={styles.logItem}>
+                  <div style={styles.logMeta}>
+                    <span>
+                      {new Date(log.timestamp).toLocaleTimeString("fr-FR", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}{" "}
+                      — {log.agent} ({log.type})
+                    </span>
+                  </div>
+
+                  {log.input && (
+                    <div style={styles.logUser}>
+                      <div style={styles.logUserLabel}>Toi</div>
+                      <div style={styles.logUserText}>{log.input}</div>
                     </div>
                   )}
-                  {msg.content}
+
+                  {log.message && (
+                    <div>
+                      <div style={styles.logAgentLabel}>Agent</div>
+                      <div style={styles.logAgentText}>{log.message}</div>
+                    </div>
+                  )}
+
+                  <div style={styles.jsonRaw}>
+                    {JSON.stringify(log.raw, null, 2)}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {error && (
-          <div
-            style={{
-              fontSize: "13px",
-              color: "#f97373",
-              backgroundColor: "rgba(127,29,29,0.3)",
-              padding: "8px 10px",
-              borderRadius: "8px",
-              border: "1px solid rgba(248,113,113,0.4)",
-            }}
-          >
-            {error}
+              ))}
+            </div>
           </div>
-        )}
-
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", gap: "8px", marginTop: "8px" }}
-        >
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Pose une question a l agent selectionne..."
-            style={{
-              flex: 1,
-              padding: "10px 12px",
-              borderRadius: "999px",
-              border: "1px solid #374151",
-              backgroundColor: "#020617",
-              color: "#e5e7eb",
-              fontSize: "14px",
-              outline: "none",
-            }}
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              padding: "10px 16px",
-              borderRadius: "999px",
-              border: "none",
-              fontSize: "14px",
-              fontWeight: 500,
-              cursor: loading ? "default" : "pointer",
-              background: loading
-                ? "#4b5563"
-                : "linear-gradient(to right, #22c55e, #22d3ee)",
-              color: "#020617",
-              minWidth: "80px",
-            }}
-          >
-            {loading ? "..." : "Envoyer"}
-          </button>
-        </form>
+        </section>
       </main>
-    </div>
+    </ShellLayout>
   );
 }
