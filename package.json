@@ -16,8 +16,13 @@
     "react-sparklines": "^1.7.0"
   },
   "devDependencies": {
+    "@axe-core/cli": "^4.11.0",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3"
+    "eslint-config-next": "16.0.3",
+    "hint": "^7.1.13",
+    "htmlhint": "^1.7.1",
+    "lighthouse-ci": "^1.13.1",
+    "pa11y": "^9.0.1"
   }
 }

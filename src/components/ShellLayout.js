@@ -1,16 +1,18 @@
-import React from "react";
-import Sidebar from "@/components/Sidebar";
-import HeaderBar from "@/components/HeaderBar";
+﻿import Sidebar from "./Sidebar";
+import HeaderBar from "./HeaderBar";
 import styles from "./ShellLayout.module.css";
 
-export default function ShellLayout({ title = "Sync GPT Hub", children }) {
+export default function ShellLayout({ children }) {
   return (
-    <div className={styles.appShell}>
-      <Sidebar />
-      <div className={styles.mainCol}>
-        <HeaderBar title={title} />
-        <main className={styles.mainArea}>{children}</main>
-      </div>
+    <div className={styles.shellRoot}>
+      <aside className={styles.sidebarArea} aria-label="Navigation principale">
+        <Sidebar />
+      </aside>
+
+      <main className={styles.mainArea} id="main-content">
+        <HeaderBar />
+        <div className={styles.pageContent}>{children}</div>
+      </main>
     </div>
   );
 }
