@@ -51,11 +51,11 @@ function getOpportunitiesStats() {
 
   const totalPipelineValue = items
     .filter((opp) => opp.stage !== 'won' && opp.stage !== 'lost')
-    .reduce((sum, opp) => sum + (opp.valueEUR || 0), 0);
+    .reduce((sum, opp) => sum + (opp.valueCAD || 0), 0);
 
   const totalWonValue = items
     .filter((opp) => opp.stage === 'won')
-    .reduce((sum, opp) => sum + (opp.valueEUR || 0), 0);
+    .reduce((sum, opp) => sum + (opp.valueCAD || 0), 0);
 
   return {
     total,

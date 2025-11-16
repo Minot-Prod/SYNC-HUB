@@ -139,7 +139,7 @@ export default function DashboardPage(props) {
   const hotDeals = [...safeOpportunities]
     .map((o) => ({
       ...o,
-      score: (o.valueEUR || 0) * (o.probability || 0),
+      score: (o.valueCAD || 0) * (o.probability || 0),
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
