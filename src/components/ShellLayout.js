@@ -19,13 +19,12 @@ export default function ShellLayout({ active = "dashboard", title, children }) {
           <nav className="nav">
             {NAV_ITEMS.map((item) => {
               const isActive = item.id === active;
+              const classes = isActive ? "nav-item nav-item-active" : "nav-item";
               return (
-                <Link key={item.id} href={item.href}>
-                  <a className={isActive ? "nav-item nav-item-active" : "nav-item"}>
-                    <span className="nav-icon">{item.icon}</span>
-                    <span className="nav-label">{item.label}</span>
-                    {isActive && <span className="nav-active-glow" />}
-                  </a>
+                <Link key={item.id} href={item.href} className={classes}>
+                  <span className="nav-icon">{item.icon}</span>
+                  <span className="nav-label">{item.label}</span>
+                  {isActive && <span className="nav-active-glow" />}
                 </Link>
               );
             })}
