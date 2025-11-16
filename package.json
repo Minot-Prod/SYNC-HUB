@@ -12,7 +12,8 @@
     "next": "16.0.3",
     "openai": "^6.9.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "react-sparklines": "^1.7.0"
   },
   "devDependencies": {
     "babel-plugin-react-compiler": "1.0.0",
