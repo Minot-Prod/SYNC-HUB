@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "id": "opp-001",
     "title": "Audit complet des scripts de vente",
@@ -8,28 +8,28 @@
     "probability": 0.4,
     "owner": "Max",
     "source": "LinkedIn DM",
-    "nextAction": "Envoyer démo vidéo Sync GPT Hub",
+    "nextAction": "Envoyer d?mo vid?o Sync GPT Hub",
     "nextActionDate": "2025-11-20",
     "tags": ["prospection", "SaaS", "agence"],
     "updatedAt": "2025-11-15T10:00:00.000Z"
   },
   {
     "id": "opp-002",
-    "title": "Formation IA pour équipe commerciale",
+    "title": "Formation IA pour ?quipe commerciale",
     "client": "Studio Nord",
     "stage": "proposal",
     "valueEUR": 5800,
     "probability": 0.6,
     "owner": "Max",
     "source": "Referral",
-    "nextAction": "Relance sur la proposition envoyée",
+    "nextAction": "Relance sur la proposition envoy?e",
     "nextActionDate": "2025-11-18",
     "tags": ["formation", "IA", "B2B"],
     "updatedAt": "2025-11-16T09:30:00.000Z"
   },
   {
     "id": "opp-003",
-    "title": "Implémentation Sync Sales Hub",
+    "title": "Impl?mentation Sync Sales Hub",
     "client": "Sync Productions",
     "stage": "negotiation",
     "valueEUR": 12000,
@@ -44,7 +44,7 @@
   {
     "id": "opp-004",
     "title": "Pack scripts + coaching",
-    "client": "Créateurs FR",
+    "client": "Cr?ateurs FR",
     "stage": "won",
     "valueEUR": 2100,
     "probability": 1.0,
@@ -56,3 +56,4 @@
     "updatedAt": "2025-11-14T15:00:00.000Z"
   }
 ]
+
