@@ -22,11 +22,12 @@ const defaultStats = {
 };
 
 export default function DashboardPage(props) {
+  const [suggestions, setSuggestions] = useState([]);
+
   const safeOpportunities = props.opportunities || [];
   const safeStats = props.stats || defaultStats;
-  const { byStage } = safeStats;
 
-  const [dailySuggestions, setDailySuggestions] = useState([]);
+  const { total, byStage, totalPipelineValue, totalWonValue } = safeStats;
 
   const upcomingActions = [...safeOpportunities]
     .filter((o) => o.nextActionDate)
@@ -59,13 +60,13 @@ export default function DashboardPage(props) {
           color: "white",
         }}
       >
-        {/* Sacha coach */}
-        <SachaHeader onSuggestionsChange={setDailySuggestions} />
+        {/* Section Sacha + Plan */}
+        <SachaHeader onSuggestionsChange={setSuggestions} />
 
-        {/* Grille d’agents IA */}
+        {/* Section Grille Agents */}
         <AgentGrid />
 
-        {/* Stats & placeholders CRM */}
+        {/* Section Stats Beta */}
         <section style={{ marginTop: "24px" }}>
           <h2
             style={{
@@ -74,140 +75,167 @@ export default function DashboardPage(props) {
               marginBottom: "12px",
             }}
           >
-            Stats & CRM – à venir
+            Stats CRM – bêta (à venir)
           </h2>
 
-          {/* Cartes placeholders */}
+          {/* Cartes métriques */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
               gap: "16px",
-              marginBottom: "12px",
             }}
           >
             <div
               style={{
                 padding: "16px",
                 borderRadius: "16px",
-                background: "rgba(15,23,42,0.8)",
-                border: "1px solid rgba(148,163,184,0.5)",
-                boxShadow: "0 18px 45px rgba(15,23,42,0.7)",
+                background: "rgba(15, 23, 42, 0.75)",
+                border: "1px solid rgba(148, 163, 184, 0.4)",
+                boxShadow: "0 18px 45px rgba(15, 23, 42, 0.7)",
               }}
             >
-              <div
+              <h3 style={{ fontSize: "16px", fontWeight: 600 }}>
+                Total opportunités
+              </h3>
+              <p
                 style={{
+                  marginTop: "8px",
+                  fontSize: "24px",
+                  fontWeight: 700,
+                }}
+              >
+                {total}
+              </p>
+              <p
+                style={{
+                  marginTop: "4px",
                   fontSize: "11px",
-                  color: "#facc15",
-                  textAlign: "right",
-                  marginBottom: "4px",
+                  color: "#94a3b8",
                 }}
               >
-                Prochaine étape
-              </div>
-              <h3 style={{ fontSize: "16px", fontWeight: 600 }}>
-                Revenus & pipeline
-              </h3>
-              <p
-                style={{
-                  fontSize: "12px",
-                  color: "#e5e7eb",
-                  marginTop: "8px",
-                }}
-              >
-                À venir : connecte ton CRM pour voir le vrai chiffre d’affaires
-                et la valeur du pipeline.
+                Tous stages confondus
               </p>
             </div>
-
             <div
               style={{
                 padding: "16px",
                 borderRadius: "16px",
-                background: "rgba(15,23,42,0.8)",
-                border: "1px solid rgba(148,163,184,0.5)",
-                boxShadow: "0 18px 45px rgba(15,23,42,0.7)",
+                background: "rgba(15, 23, 42, 0.75)",
+                border: "1px solid rgba(148, 163, 184, 0.4)",
+                boxShadow: "0 18px 45px rgba(15, 23, 42, 0.7)",
               }}
             >
               <h3 style={{ fontSize: "16px", fontWeight: 600 }}>
-                Nouveaux leads
+                Pipeline (hors deals gagnés)
               </h3>
               <p
                 style={{
-                  fontSize: "12px",
-                  color: "#e5e7eb",
                   marginTop: "8px",
+                  fontSize: "24px",
+                  fontWeight: 700,
                 }}
               >
-                À venir : Sync listera automatiquement les nouveaux leads créés
-                chaque jour.
+                {totalPipelineValue.toLocaleString("fr-CA", {
+                  style: "currency",
+                  currency: "CAD",
+                })}
+              </p>
+              <p
+                style={{
+                  marginTop: "4px",
+                  fontSize: "11px",
+                  color: "#94a3b8",
+                }}
+              >
+                Prospection / proposition / négociation
               </p>
             </div>
-
             <div
               style={{
                 padding: "16px",
                 borderRadius: "16px",
-                background: "rgba(15,23,42,0.8)",
-                border: "1px solid rgba(148,163,184,0.5)",
-                boxShadow: "0 18px 45px rgba(15,23,42,0.7)",
+                background: "rgba(15, 23, 42, 0.75)",
+                border: "1px solid rgba(148, 163, 184, 0.4)",
+                boxShadow: "0 18px 45px rgba(15, 23, 42, 0.7)",
               }}
             >
               <h3 style={{ fontSize: "16px", fontWeight: 600 }}>
-                Taux de conversion
+                Valeur deals gagnés
               </h3>
               <p
                 style={{
-                  fontSize: "12px",
-                  color: "#e5e7eb",
                   marginTop: "8px",
+                  fontSize: "24px",
+                  fontWeight: 700,
                 }}
               >
-                À venir : visualise ton taux de transformation par étape du
-                pipeline.
+                {totalWonValue.toLocaleString("fr-CA", {
+                  style: "currency",
+                  currency: "CAD",
+                })}
+              </p>
+              <p
+                style={{
+                  marginTop: "4px",
+                  fontSize: "11px",
+                  color: "#94a3b8",
+                }}
+              >
+                Cumul closed-won
               </p>
             </div>
-
             <div
               style={{
                 padding: "16px",
                 borderRadius: "16px",
-                background: "rgba(15,23,42,0.8)",
-                border: "1px solid rgba(148,163,184,0.5)",
-                boxShadow: "0 18px 45px rgba(15,23,42,0.7)",
+                background: "rgba(15, 23, 42, 0.75)",
+                border: "1px solid rgba(148, 163, 184, 0.4)",
+                boxShadow: "0 18px 45px rgba(15, 23, 42, 0.7)",
               }}
             >
-              <h3 style={{ fontSize: "16px", fontWeight: 600 }}>
-                Activité équipe
-              </h3>
-              <p
+              <h3 style={{ fontSize: "16px", fontWeight: 600 }}>Par stage</h3>
+              <ul
                 style={{
-                  fontSize: "12px",
-                  color: "#e5e7eb",
-                  marginTop: "8px",
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "8px 0 0 0",
+                  fontSize: "13px",
                 }}
               >
-                À venir : vue d’ensemble des appels, emails et rendez-vous de
-                l’équipe.
-              </p>
+                {Object.entries(byStage).map(([stage, count]) => (
+                  <li
+                    key={stage}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      borderBottom: "1px solid rgba(148, 163, 184, 0.25)",
+                      padding: "4px 0",
+                    }}
+                  >
+                    <span>{stage}</span>
+                    <span>{count}</span>
+                  </li>
+                ))}
+                {Object.keys(byStage).length === 0 && (
+                  <li
+                    style={{
+                      fontSize: "11px",
+                      color: "#94a3b8",
+                      marginTop: 4,
+                    }}
+                  >
+                    Aucune donnée pour l'instant.
+                  </li>
+                )}
+              </ul>
             </div>
           </div>
 
-          <p
-            style={{
-              fontSize: "11px",
-              color: "#9ca3af",
-              marginBottom: "16px",
-            }}
-          >
-            Disponible dans la version connectée à HubSpot.
-          </p>
-
-          {/* On garde le bloc Prochaines actions / Deals chauds + tableau
-              pour que le tableau d’opportunités démo continue d’exister */}
+          {/* Panneau actions & deals chauds */}
           <div
             style={{
-              marginTop: "8px",
+              marginTop: "24px",
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
               gap: "16px",
@@ -237,19 +265,25 @@ export default function DashboardPage(props) {
                 }}
               >
                 {upcomingActions.length === 0 && (
-                  <p style={{ fontSize: "12px", color: "#94a3b8" }}>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#94a3b8",
+                    }}
+                  >
                     Aucune prochaine action planifiée.
                   </p>
                 )}
                 {upcomingActions.map((opp) => (
                   <div key={opp.id}>
-                    <div
-                      style={{ fontSize: "13px", fontWeight: 600 }}
-                    >
+                    <div style={{ fontSize: "13px", fontWeight: 600 }}>
                       {opp.client}
                     </div>
                     <div
-                      style={{ fontSize: "11px", color: "#9ca3af" }}
+                      style={{
+                        fontSize: "11px",
+                        color: "#9ca3af",
+                      }}
                     >
                       {opp.title}
                       <br />
@@ -274,7 +308,6 @@ export default function DashboardPage(props) {
                 ))}
               </div>
             </div>
-
             <div
               style={{
                 padding: "16px",
@@ -299,15 +332,18 @@ export default function DashboardPage(props) {
                 }}
               >
                 {hotDeals.length === 0 && (
-                  <p style={{ fontSize: "12px", color: "#94a3b8" }}>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#94a3b8",
+                    }}
+                  >
                     Aucun deal chaud détecté pour l'instant.
                   </p>
                 )}
                 {hotDeals.map((opp) => (
                   <div key={opp.id}>
-                    <div
-                      style={{ fontSize: "13px", fontWeight: 600 }}
-                    >
+                    <div style={{ fontSize: "13px", fontWeight: 600 }}>
                       {opp.client} —{" "}
                       {opp.valueCAD.toLocaleString("fr-CA", {
                         style: "currency",
@@ -315,7 +351,10 @@ export default function DashboardPage(props) {
                       })}
                     </div>
                     <div
-                      style={{ fontSize: "11px", color: "#9ca3af" }}
+                      style={{
+                        fontSize: "11px",
+                        color: "#9ca3af",
+                      }}
                     >
                       <span
                         style={{
@@ -340,7 +379,7 @@ export default function DashboardPage(props) {
             </div>
           </div>
 
-          {/* Tableau d’opportunités */}
+          {/* Tableau opportunités */}
           <div
             style={{
               marginTop: "24px",
@@ -526,8 +565,8 @@ export default function DashboardPage(props) {
           </div>
         </section>
 
-        {/* Plan de la journée / To-do intelligente */}
-        <TodoWidget suggestions={dailySuggestions} />
+        {/* Section To-do connectée à Sacha */}
+        <TodoWidget suggestions={suggestions} />
       </main>
     </ShellLayout>
   );
