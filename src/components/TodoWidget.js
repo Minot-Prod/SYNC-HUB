@@ -41,9 +41,10 @@ export default function TodoWidget({ suggestions = [] }) {
   // Chargement initial depuis localStorage
   useEffect(() => {
     try {
-      const saved = typeof window !== "undefined"
-        ? window.localStorage.getItem("syncHub.dailyTasks")
-        : null;
+      const saved =
+        typeof window !== "undefined"
+          ? window.localStorage.getItem("syncHub.dailyTasks")
+          : null;
       if (saved) {
         setTasks(JSON.parse(saved));
       }
@@ -117,14 +118,22 @@ export default function TodoWidget({ suggestions = [] }) {
   const total = tasks.length;
   const completedCount = tasks.filter((t) => t.completed).length;
   const progress = total > 0 ? Math.round((completedCount / total) * 100) : 0;
-  const showCongrats = completedCount >= 1; // feedback dès la première tâche
+
+  let feedback = "";
+  if (completedCount >= 1 && completedCount < 3) {
+    feedback = "✔ Bravo, tu as enclenché la machine.";
+  } else if (completedCount >= 3 && completedCount < 5) {
+    feedback = "🔥 Solide rythme, tu prends le contrôle de ta journée.";
+  } else if (completedCount >= 5) {
+    feedback = "🚀 Mode Sync activé : tu enchaînes comme un pro.";
+  }
 
   return (
     <section style={{ marginTop: "24px" }}>
       <h2 style={{ fontSize: "20px", fontWeight: 600, marginBottom: "4px" }}>
         Plan de la journée
       </h2>
-      <p style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "12px" }}>
+      <p style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "8px" }}>
         Les actions proposées par Sacha pour aujourd’hui.
       </p>
 
@@ -161,8 +170,7 @@ export default function TodoWidget({ suggestions = [] }) {
           style={{
             width: `${progress}%`,
             height: "100%",
-            background:
-              "linear-gradient(90deg, #22c55e, #a3e635, #facc15)",
+            background: "linear-gradient(90deg, #22c55e, #a3e635, #facc15)",
           }}
         />
       </div>
@@ -207,7 +215,7 @@ export default function TodoWidget({ suggestions = [] }) {
         style={{
           listStyle: "none",
           padding: 0,
-          margin: "0 0 16px 0",
+          margin: "0 0 8px 0",
           display: "flex",
           flexDirection: "column",
           gap: "8px",
@@ -265,21 +273,21 @@ export default function TodoWidget({ suggestions = [] }) {
         ))}
       </ul>
 
-      {/* Message de félicitations simple */}
-      {showCongrats && (
+      {/* Feedback motivant */}
+      {feedback && (
         <div
           style={{
             fontSize: "12px",
             fontWeight: 600,
             color: "#bbf7d0",
-            marginBottom: "12px",
+            marginBottom: "8px",
           }}
         >
-          ✔ Bravo, une action de plus pour tes ventes.
+          {feedback}
         </div>
       )}
 
-      {/* Encart récap bientôt */}
+      {/* Encart récap bientôt + aide stockage */}
       <div
         style={{
           marginTop: "4px",
@@ -294,10 +302,13 @@ export default function TodoWidget({ suggestions = [] }) {
         <div style={{ fontWeight: 600, marginBottom: "4px" }}>
           Récap bientôt
         </div>
-        <p style={{ margin: 0 }}>
+        <p style={{ margin: 0, marginBottom: "4px" }}>
           Pour l’instant, Sacha suit tes tâches sur ce poste. Bientôt : bilan
           automatique de ta semaine (RDV, relances, deals) quand Sync sera
           connecté à ton CRM.
+        </p>
+        <p style={{ margin: 0, color: "#9ca3af" }}>
+          Les tâches cochées restent enregistrées sur ce navigateur.
         </p>
       </div>
     </section>
