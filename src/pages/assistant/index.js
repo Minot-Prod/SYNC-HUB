@@ -1,41 +1,138 @@
 import React, { useState } from "react";
-import ShellLayout from "@/components/ShellLayout";
 
 export default function AssistantPage() {
-  const [input, setInput] = useState("");
-  const [items, setItems] = useState([{ role:"assistant", text:"Salut, je suis Sacha agent Assistant principal. On sâ€™attaque Ã  quoi ?" }]);
-  async function onSend(e){ e.preventDefault(); const t=input.trim(); if(!t) return; setItems(p=>[...p,{role:"user",text:t}]); setInput(""); }
+  const [message, setMessage] = useState("");
+  const [history, setHistory] = useState([]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const text = message.trim();
+    if (!text) return;
+    setHistory((h) => [...h, { from: "user", text }]);
+    setMessage("");
+
+    // Simple routage par mots clés pour déterminer l’agent
+    const lowered = text.toLowerCase();
+    let slug = "";
+    if (lowered.includes("prospect") || lowered.includes("cible")) {
+      slug = "prospection";
+    } else if (lowered.includes("mail") || lowered.includes("écrire")) {
+      slug = "redaction";
+    } else if (lowered.includes("analyse") || lowered.includes("diagnostic")) {
+      slug = "analyse";
+    } else if (lowered.includes("trend") || lowered.includes("marché")) {
+      slug = "radar";
+    }
+    if (!slug) {
+      // pas de routage ? message générique
+      setHistory((h) => [
+        ...h,
+        { from: "sacha", text: "Je n’ai pas compris, reformule ou va sur un agent." },
+      ]);
+      return;
+    }
+
+    // Appel de l’agent correspondant via /api/agents/[slug]
+    try {
+      const res = await fetch(`/api/agents/${slug}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: text }),
+      });
+      const data = await res.json();
+      setHistory((h) => [
+        ...h,
+        {
+          from: "sacha",
+          text: data.answer || "Pas de réponse pour le moment.",
+        },
+      ]);
+    } catch {
+      setHistory((h) => [
+        ...h,
+        { from: "sacha", text: "Erreur lors de la requête." },
+      ]);
+    }
+  }
+
   return (
-    <ShellLayout title="Assistant">
-      <div style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:16}}>
-        <section style={{border:"1px solid rgba(255,255,255,0.08)",borderRadius:16,background:"linear-gradient(135deg, rgba(20,24,36,0.85), rgba(10,14,24,0.92))",boxShadow:"0 18px 40px rgba(0,0,0,0.7)",display:"flex",flexDirection:"column",minHeight:"60vh"}}>
-          <div style={{padding:"12px 14px",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-            <div style={{fontSize:12,letterSpacing:"0.08em",textTransform:"uppercase",color:"rgba(148,163,184,0.9)"}}>Chat avec Sacha agent Assistant principal</div>
+    <main
+      style={{
+        padding: "24px",
+        minHeight: "100vh",
+        background: "#020617",
+        color: "#e5e7eb",
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+      }}
+    >
+      <h1 style={{ fontSize: "24px", fontWeight: 700 }}>Assistant Sacha</h1>
+      <div
+        style={{
+          flexGrow: 1,
+          padding: "16px",
+          borderRadius: "16px",
+          background: "rgba(15,23,42,0.8)",
+          border: "1px solid rgba(148,163,184,0.4)",
+          overflowY: "auto",
+        }}
+      >
+        {history.map((entry, idx) => (
+          <div
+            key={idx}
+            style={{
+              marginBottom: "8px",
+              textAlign: entry.from === "user" ? "right" : "left",
+            }}
+          >
+            <div
+              style={{
+                display: "inline-block",
+                padding: "8px 12px",
+                borderRadius: "12px",
+                background:
+                  entry.from === "user"
+                    ? "rgba(37,99,235,0.8)"
+                    : "rgba(147,197,253,0.2)",
+                color: entry.from === "user" ? "#fff" : "#e5e7eb",
+              }}
+            >
+              {entry.text}
+            </div>
           </div>
-          <div style={{padding:14,flex:1,overflowY:"auto"}}>
-            {items.map((m,i)=>(
-              <div key={i} style={{marginBottom:10,display:"flex",gap:10}}>
-                <div style={{width:26,height:26,borderRadius:6,background:m.role==="assistant"?"linear-gradient(135deg, #4f8cff, #7b5cff)":"rgba(255,255,255,0.1)"}}/>
-                <div>
-                  <div style={{fontSize:12,color:"rgba(148,163,184,0.9)"}}>{m.role==="assistant"?"Sacha":"Toi"}</div>
-                  <div style={{fontSize:14}}>{m.text}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <form onSubmit={onSend} style={{padding:12,borderTop:"1px solid rgba(255,255,255,0.06)",display:"flex",gap:8}}>
-            <input value={input} onChange={e=>setInput(e.target.value)} placeholder="Ã‰cris ta demandeâ€¦" style={{flex:1,borderRadius:10,border:"1px solid rgba(255,255,255,0.10)",background:"rgba(10,14,24,0.95)",color:"#fff",padding:"10px 12px"}}/>
-            <button type="submit" style={{padding:"10px 14px",borderRadius:10,border:"none",background:"linear-gradient(135deg, #00f0ff, #3b82f6, #8b5cff)",color:"#020617",fontWeight:700,cursor:"pointer"}}>Envoyer</button>
-          </form>
-        </section>
-        <aside style={{border:"1px solid rgba(255,255,255,0.08)",borderRadius:16,background:"linear-gradient(135deg, rgba(20,24,36,0.85), rgba(10,14,24,0.92))",boxShadow:"0 18px 40px rgba(0,0,0,0.7)",padding:14}}>
-          <div style={{fontSize:12,letterSpacing:"0.08em",textTransform:"uppercase",color:"rgba(148,163,184,0.9)",marginBottom:8}}>Infos Assistant</div>
-          <ul style={{margin:0,paddingLeft:16,color:"rgba(209,213,219,0.95)",fontSize:13,lineHeight:1.6}}>
-            <li>Clarifie lâ€™intention et route vers LÃ©o/Maya/Eliot/ZoÃ©.</li>
-            <li>Next step clair, ton vendeur, pas de blabla.</li>
-          </ul>
-        </aside>
+        ))}
       </div>
-    </ShellLayout>
+      <form onSubmit={handleSubmit} style={{ display: "flex", gap: "8px" }}>
+        <input
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Pose une question à Sacha…"
+          style={{
+            flexGrow: 1,
+            borderRadius: "8px",
+            padding: "12px",
+            border: "1px solid rgba(148,163,184,0.4)",
+            background: "rgba(20,28,45,0.9)",
+            color: "#fff",
+            fontSize: "14px",
+          }}
+        />
+        <button
+          type="submit"
+          style={{
+            padding: "12px 18px",
+            borderRadius: "8px",
+            border: "none",
+            background: "linear-gradient(135deg, #00f0ff, #3b82f6, #8b5cff)",
+            color: "#020617",
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
+        >
+          Envoyer
+        </button>
+      </form>
+    </main>
   );
 }
