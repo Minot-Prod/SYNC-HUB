@@ -1,46 +1,28 @@
-﻿// src/lib/services/opportunitiesService.js
-
-const {
-  getAllOpportunities,
-  getOpportunityById,
-  getOpportunitiesByStage,
-} = require('../storage/jsonStore');
+﻿import { getAllOpportunities, getOpportunityById } from "../storage/jsonStore";
 
 /**
  * Retourne la liste des opportunités, avec filtrage optionnel.
- * @param {Object} params
- * @param {string=} params.stage
- * @param {string=} params.owner
+ * @param {{stage?: string, owner?: string}} params
  */
-function listOpportunities(params = {}) {
+export function listOpportunities(params = {}) {
   const { stage, owner } = params;
   let items = getAllOpportunities();
 
-  if (stage) {
-    items = items.filter((opp) => opp.stage === stage);
-  }
-
-  if (owner) {
-    items = items.filter(
-      (opp) => opp.owner && opp.owner.toLowerCase() === owner.toLowerCase()
-    );
-  }
+  if (stage) items = items.filter((opp) => opp.stage === stage);
+  if (owner) items = items.filter(
+    (opp) => opp.owner && opp.owner.toLowerCase() === owner.toLowerCase()
+  );
 
   return items;
 }
 
-/**
- * Détail d’une opportunité.
- * @param {string} id
- */
-function getOpportunity(id) {
+/** Détail d’une opportunité. */
+export function getOpportunity(id) {
   return getOpportunityById(id);
 }
 
-/**
- * Statistiques simples pour le dashboard.
- */
-function getOpportunitiesStats() {
+/** Statistiques simples pour le dashboard. */
+export function getOpportunitiesStats() {
   const items = getAllOpportunities();
   const total = items.length;
 
@@ -50,23 +32,14 @@ function getOpportunitiesStats() {
   }, {});
 
   const totalPipelineValue = items
-    .filter((opp) => opp.stage !== 'won' && opp.stage !== 'lost')
+    .filter((opp) => opp.stage !== "won" && opp.stage !== "lost")
     .reduce((sum, opp) => sum + (opp.valueCAD || 0), 0);
 
   const totalWonValue = items
-    .filter((opp) => opp.stage === 'won')
+    .filter((opp) => opp.stage === "won")
     .reduce((sum, opp) => sum + (opp.valueCAD || 0), 0);
 
-  return {
-    total,
-    byStage,
-    totalPipelineValue,
-    totalWonValue,
-  };
+  return { total, byStage, totalPipelineValue, totalWonValue };
 }
 
-module.exports = {
-  listOpportunities,
-  getOpportunity,
-  getOpportunitiesStats,
-};
+export default { listOpportunities, getOpportunity, getOpportunitiesStats };
