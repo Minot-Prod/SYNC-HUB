@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+﻿﻿import React, { useState, useEffect } from "react";
 
 /**
  * Plan de la journée / To-do intelligente
@@ -9,6 +9,7 @@
 export default function TodoWidget({ suggestions = [] }) {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
+  const [toast, setToast] = useState(null);
 
   const fallbackSuggestions = [
     {
@@ -108,11 +109,18 @@ export default function TodoWidget({ suggestions = [] }) {
   }
 
   function toggleTask(id) {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+    const updated = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
     );
+    const toggled = updated.find((task) => task.id === id);
+    setTasks(updated);
+    if (toggled && toggled.completed) {
+      // Affiche un toast de félicitations
+      setToast(`✔ ${toggled.label} accomplie !`);
+      setTimeout(() => {
+        setToast(null);
+      }, 3000);
+    }
   }
 
   const total = tasks.length;
@@ -170,7 +178,8 @@ export default function TodoWidget({ suggestions = [] }) {
           style={{
             width: `${progress}%`,
             height: "100%",
-            background: "linear-gradient(90deg, #22c55e, #a3e635, #facc15)",
+            background:
+              "linear-gradient(90deg, #22c55e, #a3e635, #facc15)",
           }}
         />
       </div>
@@ -299,9 +308,7 @@ export default function TodoWidget({ suggestions = [] }) {
           color: "#e5e7eb",
         }}
       >
-        <div style={{ fontWeight: 600, marginBottom: "4px" }}>
-          Récap bientôt
-        </div>
+        <div style={{ fontWeight: 600, marginBottom: "4px" }}>Récap bientôt</div>
         <p style={{ margin: 0, marginBottom: "4px" }}>
           Pour l’instant, Sacha suit tes tâches sur ce poste. Bientôt : bilan
           automatique de ta semaine (RDV, relances, deals) quand Sync sera
@@ -311,6 +318,26 @@ export default function TodoWidget({ suggestions = [] }) {
           Les tâches cochées restent enregistrées sur ce navigateur.
         </p>
       </div>
+
+      {/* Toast félicitations */}
+      {toast && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            background: "rgba(22,163,74,0.9)",
+            color: "#ecfdf5",
+            padding: "12px 20px",
+            borderRadius: "8px",
+            boxShadow: "0 4px 6px rgba(0,0,0,0.3)",
+            fontSize: "12px",
+            zIndex: 1000,
+          }}
+        >
+          {toast}
+        </div>
+      )}
     </section>
   );
 }
