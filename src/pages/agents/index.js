@@ -1,12 +1,21 @@
-﻿import agents from "@/data/agents";
-import AgentCard from "@/components/AgentCard";
-
-export default function AgentsPage(){
+export default function AgentsIndex(){
+  const items = [
+    {slug:"prospection", label:"Agent Prospection"},
+    {slug:"redaction",   label:"Agent Rédaction"},
+    {slug:"analyse",     label:"Analyste Entreprise"},
+    {slug:"radar",       label:"Radar Opportunités"},
+    {slug:"coach",       label:"Coach IA"}
+  ];
   return (
-    <main className="max-w-6xl mx-auto p-6 grid gap-4"
-          style={{gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))"}}>
-      {agents.map(a => <AgentCard key={a.id} agent={a} />)}
+    <main style={{padding:24}}>
+      <h1>Agents</h1>
+      <ul>
+        {items.map(x => (
+          <li key={x.slug}>
+            <a href={/agents/}>{x.label}</a>
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }
-
