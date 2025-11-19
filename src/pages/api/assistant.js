@@ -41,3 +41,4 @@ Toujours: structure en sections courtes, puces si utile, et "Prochaine action" e
     return res.status(500).json({error:String(e)});
   }
 }
+

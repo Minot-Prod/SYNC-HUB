@@ -22,3 +22,4 @@ export default function AgentAvatar({ seed, accent="green", size=56 }){
     </svg>
   );
 }
+

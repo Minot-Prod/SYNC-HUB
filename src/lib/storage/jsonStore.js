@@ -84,3 +84,4 @@ export function getOpportunityById(id) {
 export function getOpportunitiesByStage(stage) {
   return opportunities.filter((opp) => opp.stage === stage);
 }
+

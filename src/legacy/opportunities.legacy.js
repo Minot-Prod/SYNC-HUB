@@ -822,3 +822,4 @@ ${context || "(aucun contexte fourni, reste générique mais actionnable)"}
     </div>
   );
 }
+

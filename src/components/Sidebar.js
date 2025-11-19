@@ -1,15 +1,15 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Sidebar.module.css";
 
 const NAV = [
-  { href: "/dashboard", label: "Dashboard", icon: "📊" },
-  { href: "/assistant", label: "Assistant", icon: "🤝" },
-  { href: "/agents", label: "Agents", icon: "🧑‍💻" },
-  { href: "/opportunities", label: "Opportunités", icon: "💼" },
-  { href: "/notes", label: "Notes", icon: "📝" },
-  { href: "/settings", label: "Réglages", icon: "⚙️" }
+  { href: "/dashboard", label: "Dashboard", icon: "ðŸ“Š" },
+  { href: "/assistant", label: "Assistant", icon: "ðŸ¤" },
+  { href: "/agents", label: "Agents", icon: "ðŸ§‘â€ðŸ’»" },
+  { href: "/opportunities", label: "OpportunitÃ©s", icon: "ðŸ’¼" },
+  { href: "/notes", label: "Notes", icon: "ðŸ“" },
+  { href: "/settings", label: "RÃ©glages", icon: "âš™ï¸" }
 ];
 
 export default function Sidebar() {

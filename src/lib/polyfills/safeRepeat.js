@@ -1,4 +1,4 @@
-/* Safe seatbelt for String.repeat: clamps negative counts to 0 */
+﻿/* Safe seatbelt for String.repeat: clamps negative counts to 0 */
 (function () {
   if (typeof String.prototype.repeat !== "function") return;
   if (String.prototype.__safeWrapped) return;

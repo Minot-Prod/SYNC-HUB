@@ -40,3 +40,4 @@ export function getAgentConfig(agentId) {
   const key = (agentId || "sales").toLowerCase();
   return agents[key] || null;
 }
+

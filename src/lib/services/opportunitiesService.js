@@ -43,3 +43,4 @@ export function getOpportunitiesStats() {
 }
 
 export default { listOpportunities, getOpportunity, getOpportunitiesStats };
+

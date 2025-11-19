@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import styles from "./HeaderBar.module.css";
 
 export default function HeaderBar({ title = "Sync GPT Hub" }) {

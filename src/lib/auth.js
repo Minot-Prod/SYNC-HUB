@@ -3,3 +3,4 @@
   const match = cookie.match(/sync_token=([^;]+)/);
   return !!match;
 }
+

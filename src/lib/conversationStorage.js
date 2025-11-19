@@ -49,3 +49,4 @@ export function appendMessages(agentId, newMessages) {
   saveConversation(agentId, merged);
   return merged;
 }
+
