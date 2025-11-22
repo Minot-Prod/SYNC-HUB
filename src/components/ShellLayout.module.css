@@ -1,22 +1,26 @@
-﻿.shellRoot {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
+﻿.appRoot {
+  display: flex;
   min-height: 100vh;
-}
-
-.sidebarArea {
-  /* styles de la sidebar */
-  background: var(--bg-secondary);
-  border-right: 1px solid var(--border);
+  background: radial-gradient(circle at top, #020617 0, #020617 35%, #020617 100%);
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 }
 
 .mainArea {
   display: flex;
   flex-direction: column;
-  background: var(--bg-primary);
+  flex: 1;
+  min-width: 0;
+  background:
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.16), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.12), transparent 55%),
+    #020617;
 }
 
-.pageContent {
+.mainContent {
   flex: 1;
-  padding: 24px;
+  padding: 18px 22px 20px 22px;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: auto;
 }

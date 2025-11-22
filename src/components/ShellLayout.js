@@ -1,19 +1,16 @@
-﻿import Sidebar from "./Sidebar";
+﻿import React from "react";
+import Sidebar from "./Sidebar";
 import HeaderBar from "./HeaderBar";
 import styles from "./ShellLayout.module.css";
 
 export default function ShellLayout({ children }) {
   return (
-    <div className={styles.shellRoot}>
-      <aside className={styles.sidebarArea} aria-label="Navigation principale">
-        <Sidebar />
-      </aside>
-
-      <main className={styles.mainArea} id="main-content">
+    <div className={styles.appRoot}>
+      <Sidebar />
+      <div className={styles.mainArea}>
         <HeaderBar />
-        <div className={styles.pageContent}>{children}</div>
-      </main>
+        <main className={styles.mainContent}>{children}</main>
+      </div>
     </div>
   );
 }
-

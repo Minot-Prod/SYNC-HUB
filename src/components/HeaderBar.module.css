@@ -1,6 +1,79 @@
-.header { position:sticky; top:0; z-index:10; display:flex; gap:16px; justify-content:space-between; align-items:center;
-  padding:14px 26px; border-bottom:1px solid var(--border); background: linear-gradient(180deg, rgba(5,7,18,0.90), rgba(5,7,18,0.75)); backdrop-filter: blur(8px);}
-.title { font-size:18px; font-weight:700; letter-spacing:0.2px; }
-.actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
-.ghost { padding:8px 14px; border-radius:999px; border:1px solid rgba(148,163,184,0.7); background:rgba(15,23,42,0.98); color:#e5e7eb; font-size:13px; cursor:pointer;}
-.cta { padding:8px 14px; border-radius:999px; border:none; background: linear-gradient(135deg, #00f0ff, #3b82f6, #8b5cff); color:#020617; font-weight:700; font-size:13px; cursor:pointer;}
+﻿.header {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  background: linear-gradient(
+    to right,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0.9),
+    rgba(15, 23, 42, 0.95)
+  );
+  backdrop-filter: blur(12px);
+  box-sizing: border-box;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #e5e7eb;
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: radial-gradient(circle at left, rgba(34, 197, 94, 0.22), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(34, 197, 94, 0.45);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+}
+
+.statusText {
+  font-size: 11px;
+  color: #bbf7d0;
+}
