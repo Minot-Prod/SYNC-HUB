@@ -2,29 +2,7 @@
 
 export default function Home() {
   return (
-    
-      {/* Retour au site */}
-      <a
-        href="/"
-        style={{
-          position: "fixed",
-          top: 18,
-          right: 18,
-          zIndex: 9999,
-          display: "inline-flex",
-          padding: "8px 12px",
-          fontSize: "14px",
-          fontWeight: 800,
-          borderRadius: "999px",
-          border: "1px solid rgba(255,255,255,0.14)",
-          background: "rgba(0,0,0,0.35)",
-          color: "white",
-          textDecoration: "none",
-          backdropFilter: "blur(6px)"
-        }}
-      >
-        ← Retour au site Sync-Hub
-      </a><main
+<main
       style={{
         minHeight: "100vh",
         background:
@@ -56,7 +34,55 @@ export default function Home() {
             gap: "1.5rem",
           }}
         >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <div
               style={{
                 width: "32px",
@@ -71,9 +97,57 @@ export default function Home() {
                 fontWeight: 700,
               }}
             >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               S
             </div>
             <div>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <div
                 style={{
                   fontSize: "0.9rem",
@@ -82,9 +156,57 @@ export default function Home() {
                   opacity: 0.9,
                 }}
               >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
                 Sync-Hub
               </div>
               <div style={{ fontSize: "0.8rem", opacity: 0.7 }}>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
                 Cockpit IA des équipes de vente
               </div>
             </div>
@@ -140,6 +262,30 @@ export default function Home() {
           padding: "3.5rem 1.5rem 4rem",
         }}
       >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
         {/* Section 1 — Intro */}
         <section id="intro" style={{ marginBottom: "3.5rem" }}>
           <StepLabel number="0" title="Pourquoi je suis là" />
@@ -182,7 +328,55 @@ export default function Home() {
               flexWrap: "wrap",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <div>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <h2
                 style={{
                   fontSize: "1.7rem",
@@ -229,6 +423,30 @@ export default function Home() {
                 fontSize: "0.95rem",
               }}
             >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <p style={{ marginBottom: "0.5rem", opacity: 0.9 }}>
                 <strong>Sur 10 rendez-vous</strong>, vous pouvez facilement
                 perdre l&apos;équivalent de <strong>3 à 4 heures</strong> en
@@ -257,6 +475,30 @@ export default function Home() {
               boxShadow: "0 22px 45px rgba(15,23,42,0.9)",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <p
               style={{
                 fontSize: "1.25rem",
@@ -288,6 +530,30 @@ export default function Home() {
               gap: "1.6rem",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <WowCard
               title="Préparation de rendez-vous en 10 secondes"
               before={[
@@ -338,7 +604,55 @@ export default function Home() {
               alignItems: "flex-start",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <div>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <h2
                 style={{
                   fontSize: "1.6rem",
@@ -383,6 +697,30 @@ export default function Home() {
                 fontSize: "0.96rem",
               }}
             >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <p style={{ marginBottom: "0.5rem", opacity: 0.9 }}>
                 Concrètement, pour vos équipes, l&apos;expérience reste très
                 simple&nbsp;: quelques boutons clairs, des champs déjà remplis,
@@ -408,6 +746,30 @@ export default function Home() {
               gap: "1.4rem",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <SecurityPoint
               title="Principe du moindre privilège"
               text="L&apos;IA n&apos;accède qu&apos;aux données nécessaires pour faire son travail. Pas de fenêtres ouvertes sur l&apos;ensemble de votre patrimoine d&apos;information."
@@ -439,6 +801,30 @@ export default function Home() {
                 "linear-gradient(135deg, rgba(15,23,42,0.96), rgba(22,101,52,0.9))",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <div
               style={{
                 display: "grid",
@@ -447,7 +833,55 @@ export default function Home() {
                 alignItems: "flex-start",
               }}
             >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <div>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
                 <h2
                   style={{
                     fontSize: "1.6rem",
@@ -481,6 +915,30 @@ export default function Home() {
                 </ul>
               </div>
               <div>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
                 <h3
                   style={{
                     fontSize: "1.1rem",
@@ -535,7 +993,55 @@ export default function Home() {
               alignItems: "flex-start",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <div>
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <h2
                 style={{
                   fontSize: "1.7rem",
@@ -591,6 +1097,30 @@ export default function Home() {
                 fontSize: "0.95rem",
               }}
             >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <p style={{ marginBottom: "0.7rem", opacity: 0.9 }}>
                 Parlios OS se présente comme un <strong>workspace IA central</strong>,
                 capable à terme de piloter plusieurs hubs métiers&nbsp;:
@@ -636,6 +1166,30 @@ export default function Home() {
                 "linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.92))",
             }}
           >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
             <h2
               style={{
                 fontSize: "1.6rem",
@@ -666,6 +1220,30 @@ export default function Home() {
                 marginBottom: "0.8rem",
               }}
             >
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a>
               <a
                 href="#pilot-90"
                 style={{
@@ -729,7 +1307,18 @@ const navLinkStyle = {
 
 function StepLabel({ number, title }) {
   return (
-    
+<div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "0.7rem",
+        marginBottom: "0.9rem",
+        fontSize: "0.85rem",
+        letterSpacing: "0.12em",
+        textTransform: "uppercase",
+        opacity: 0.85,
+      }}
+    >
       {/* Retour au site */}
       <a
         href="/"
@@ -739,6 +1328,8 @@ function StepLabel({ number, title }) {
           right: 18,
           zIndex: 9999,
           display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
           padding: "8px 12px",
           fontSize: "14px",
           fontWeight: 800,
@@ -751,18 +1342,7 @@ function StepLabel({ number, title }) {
         }}
       >
         ← Retour au site Sync-Hub
-      </a><div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "0.7rem",
-        marginBottom: "0.9rem",
-        fontSize: "0.85rem",
-        letterSpacing: "0.12em",
-        textTransform: "uppercase",
-        opacity: 0.85,
-      }}
-    >
+      </a>
       <span
         style={{
           width: "22px",
@@ -786,7 +1366,15 @@ function StepLabel({ number, title }) {
 
 function WowCard({ title, before, after }) {
   return (
-    
+<div
+      style={{
+        borderRadius: "1.1rem",
+        border: "1px solid rgba(148,163,184,0.45)",
+        background: "rgba(15,23,42,0.9)",
+        padding: "1.4rem 1.45rem",
+        fontSize: "0.96rem",
+      }}
+    >
       {/* Retour au site */}
       <a
         href="/"
@@ -796,6 +1384,8 @@ function WowCard({ title, before, after }) {
           right: 18,
           zIndex: 9999,
           display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
           padding: "8px 12px",
           fontSize: "14px",
           fontWeight: 800,
@@ -808,15 +1398,7 @@ function WowCard({ title, before, after }) {
         }}
       >
         ← Retour au site Sync-Hub
-      </a><div
-      style={{
-        borderRadius: "1.1rem",
-        border: "1px solid rgba(148,163,184,0.45)",
-        background: "rgba(15,23,42,0.9)",
-        padding: "1.4rem 1.45rem",
-        fontSize: "0.96rem",
-      }}
-    >
+      </a>
       <h3
         style={{
           fontSize: "1.1rem",
@@ -869,7 +1451,15 @@ function WowCard({ title, before, after }) {
 
 function SecurityPoint({ title, text }) {
   return (
-    
+<div
+      style={{
+        padding: "1.2rem 1.25rem",
+        borderRadius: "1rem",
+        border: "1px solid rgba(148,163,184,0.45)",
+        background: "rgba(15,23,42,0.96)",
+        fontSize: "0.94rem",
+      }}
+    >
       {/* Retour au site */}
       <a
         href="/"
@@ -879,6 +1469,8 @@ function SecurityPoint({ title, text }) {
           right: 18,
           zIndex: 9999,
           display: "inline-flex",
+          gap: 6,
+          alignItems: "center",
           padding: "8px 12px",
           fontSize: "14px",
           fontWeight: 800,
@@ -891,15 +1483,7 @@ function SecurityPoint({ title, text }) {
         }}
       >
         ← Retour au site Sync-Hub
-      </a><div
-      style={{
-        padding: "1.2rem 1.25rem",
-        borderRadius: "1rem",
-        border: "1px solid rgba(148,163,184,0.45)",
-        background: "rgba(15,23,42,0.96)",
-        fontSize: "0.94rem",
-      }}
-    >
+      </a>
       <h3
         style={{
           fontSize: "1rem",
