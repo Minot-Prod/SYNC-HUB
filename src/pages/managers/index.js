@@ -14,7 +14,7 @@ export default function Managers() {
       alignItems: "center"
     }}>
 
-      {/* HEADER APP (logos centraux XXL) */}
+      {/* HEADER APP (Sync x Parlios centraux XXL) */}
       <div style={{
         width: "100%",
         maxWidth: 1000,
@@ -28,18 +28,19 @@ export default function Managers() {
           src="/sync-logo.png"
           alt="Sync"
           style={{
-            height: 160,
+            height: 240,
             width: "auto",
-            filter: "drop-shadow(0 0 22px rgba(255,255,255,0.28))"
+            filter: "drop-shadow(0 0 28px rgba(255,255,255,0.35))"
           }}
         />
 
         <div style={{
-          marginTop: 8,
-          marginBottom: 6,
-          opacity: 0.55,
-          fontWeight: 800,
-          letterSpacing: 2
+          marginTop: 10,
+          marginBottom: 8,
+          opacity: 0.6,
+          fontWeight: 900,
+          letterSpacing: 2,
+          fontSize: 18
         }}>
           ×
         </div>
@@ -48,17 +49,17 @@ export default function Managers() {
           src="/parlios-logo.png"
           alt="Parlios"
           style={{
-            height: 120,
+            height: 140,
             width: "auto",
-            filter: "drop-shadow(0 0 26px rgba(255,80,80,0.45))"
+            filter: "drop-shadow(0 0 30px rgba(255,80,80,0.5))"
           }}
         />
 
         <div style={{
           marginTop: 12,
           fontSize: 15,
-          opacity: 0.8,
-          fontWeight: 700
+          opacity: 0.85,
+          fontWeight: 800
         }}>
           Propulsé par Parlios OS
         </div>
@@ -93,7 +94,7 @@ export default function Managers() {
 
         <p style={{opacity:0.9,lineHeight:1.7,fontSize:17}}>
           Ici, vous pouvez explorer ce que Parlios OS pourrait faire pour les ventes, le support,
-          les opérations ou la finance de Sync.  
+          les opérations ou la finance de Sync.
           Vous parlez à l’agent “Architecte Parlios OS – édition Sync”, qui traduit votre contexte
           métier en cas d’usage IA concrets et priorisés.
         </p>
