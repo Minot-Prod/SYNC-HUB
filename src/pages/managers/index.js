@@ -50,7 +50,7 @@ export default function Managers() {
         flexDirection: "column",
         alignItems: "center",
         marginTop: 10,
-        marginBottom: 30
+        marginBottom: 24
       }}>
         <img
           src="/sync-logo.png"
@@ -82,15 +82,6 @@ export default function Managers() {
           }}
         />
 
-        <div style={{
-          marginTop: 12,
-          fontSize: 15,
-          opacity: 0.8,
-          fontWeight: 700
-        }}>
-          Propulsé par Parlios OS
-        </div>
-
         <Link href="/" style={{
           marginTop: 14,
           fontSize: 14,
@@ -106,59 +97,7 @@ export default function Managers() {
         </Link>
       </div>
 
-      {/* HERO / PLAYGROUND */}
-      <div style={{
-        width: "100%",
-        maxWidth: 1000,
-        padding: "26px 22px",
-        borderRadius: 20,
-        background: "rgba(255,255,255,0.04)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        marginBottom: 18
-      }}>
-        <h1 style={{marginTop:0,fontSize:32,fontWeight:900}}>
-          Playground Parlios OS — Direction Sync
-        </h1>
-
-        <p style={{opacity:0.9,lineHeight:1.7,fontSize:17}}>
-          Ici, vous pouvez explorer ce que Parlios OS pourrait faire pour les ventes, le support,
-          les opérations ou la finance de Sync.
-          Vous parlez à l’agent “Architecte Parlios OS – édition Sync”, qui traduit votre contexte
-          métier en cas d’usage IA concrets et priorisés.
-        </p>
-
-        <div style={{marginTop:18,fontWeight:800,fontSize:16}}>
-          Exemples de questions à poser :
-        </div>
-
-        <ul style={{opacity:0.9,lineHeight:1.8,fontSize:16,marginTop:8}}>
-          <li>Liste les 5 processus les plus prometteurs à automatiser dans notre contexte.</li>
-          <li>Crée un plan Parlios OS pour équiper nos équipes ventes, support et finance sur 12 mois.</li>
-          <li>Donne-moi une journée type d’un manager avec Parlios OS déployé.</li>
-          <li>Propose un pilote Parlios OS autour de Sync-Hub avec des KPIs clairs.</li>
-        </ul>
-
-        <a
-          href="https://parlios-os-3a12b730.base44.app"
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            display:"inline-flex",
-            marginTop:14,
-            padding:"12px 20px",
-            background:"#2f6bff",
-            color:"white",
-            fontWeight:900,
-            borderRadius:999,
-            textDecoration:"none",
-            boxShadow:"0 10px 30px rgba(47,107,255,0.38)"
-          }}
-        >
-          Ouvrir le Playground Parlios OS — Direction Sync
-        </a>
-      </div>
-
-      {/* KPI / ROI PORTAL */}
+      {/* KPI / ROI PORTAL (dashboard only) */}
       <section style={{
         width: "100%",
         maxWidth: 1000,
@@ -168,9 +107,9 @@ export default function Managers() {
         border: "1px solid rgba(255,255,255,0.08)"
       }}>
         <div style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
-          <h2 style={{margin:0,fontSize:24,fontWeight:900}}>
-            Portail KPI / ROI Sync-Hub
-          </h2>
+          <h1 style={{margin:0,fontSize:28,fontWeight:900}}>
+            Tableau de contrôle — KPI / ROI Sync-Hub
+          </h1>
           <div style={{opacity:0.8,fontSize:14,fontWeight:600}}>
             Vue synthèse de l’utilisation et de l’impact sur l’équipe pilote.
           </div>

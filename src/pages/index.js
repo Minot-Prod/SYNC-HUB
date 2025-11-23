@@ -26,8 +26,9 @@ export default function Home() {
           <img src="/sync-logo.png" alt="Sync" style={{ height: 40, width: "auto" }} />
           <div style={{ opacity: 0.5, fontWeight: 700 }}>×</div>
           <img src="/parlios-logo.png" alt="Parlios" style={{ height: 36, width: "auto" }} />
+
           <div style={{ marginLeft: 14, opacity: 0.9, fontWeight: 600 }}>
-            Sync-Hub — Cockpit IA des équipes de vente (propulsé par Parlios OS)
+            Sync-Hub — Cockpit IA des équipes de vente
           </div>
 
           <div style={{ marginLeft: "auto" }}>
@@ -73,7 +74,7 @@ export default function Home() {
             }}>
               <div style={{ fontWeight: 800, fontSize: 18 }}>Présentation SYNC</div>
               <div style={{ marginTop: 6, opacity: 0.8, fontSize: 14 }}>
-                Vision, promesse produit, démo direction.
+                Vision produit, promesse, démo direction.
               </div>
             </Link>
 
@@ -103,7 +104,7 @@ export default function Home() {
             }}>
               <div style={{ fontWeight: 800, fontSize: 18 }}>Espace Managers / Direction</div>
               <div style={{ marginTop: 6, opacity: 0.8, fontSize: 14 }}>
-                Playground Parlios OS édition Sync.
+                KPI / ROI Sync-Hub (vue direction).
               </div>
             </Link>
           </div>
