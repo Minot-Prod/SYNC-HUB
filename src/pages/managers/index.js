@@ -11,6 +11,19 @@ export default function ManagersPage() {
           "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       }}
     >
+<div style={{display:"flex",gap:"1rem",alignItems:"center",marginBottom:"2rem"}}>
+  <img
+    src="/sync-logo.png"
+    alt="Sync"
+    style={{height:"40px",width:"auto",filter:"drop-shadow(0 0 8px rgba(255,255,255,0.15))"}}
+  />
+  <div style={{opacity:0.5,fontSize:"0.9rem",fontWeight:600}}>x</div>
+  <img
+    src="/parlios-logo.png"
+    alt="Parlios"
+    style={{height:"36px",width:"auto",filter:"drop-shadow(0 0 10px rgba(255,80,80,0.35))"}}
+  />
+</div>
       <header
         style={{
           borderBottom: "1px solid rgba(148,163,184,0.35)",
