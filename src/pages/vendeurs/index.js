@@ -21,7 +21,7 @@
         <div style={{padding:18,borderRadius:14,background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)"}}>
           <div style={{fontWeight:800}}>Scénario 1 — Prépa RDV</div>
           <p style={{opacity:0.9,lineHeight:1.6}}>
-            “Prépare-moi un plan de RDV avec {nom du client} : contexte, objectif, questions clés, risques et next steps.”
+            “Prépare-moi un plan de RDV avec {"{nom du client}"} : contexte, objectif, questions clés, risques et next steps.”
           </p>
         </div>
 
@@ -35,7 +35,7 @@
         <div style={{padding:18,borderRadius:14,background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)"}}>
           <div style={{fontWeight:800}}>Scénario 3 — Relance chaude</div>
           <p style={{opacity:0.9,lineHeight:1.6}}>
-            “Écris une relance courte après RDV en reprenant {point clé}, avec CTA clair et une touche perso.”
+            “Écris une relance courte après RDV en reprenant {"{point clé}"} , avec CTA clair et une touche perso.”
           </p>
         </div>
       </div>
