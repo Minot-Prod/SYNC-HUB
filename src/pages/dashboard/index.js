@@ -8,7 +8,36 @@ const homeUrl = "/";
 
 export default function Dashboard() {
   return (
-    <main
+{/* BIG_BRAND_HEADER */}
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: "2.5rem",
+    paddingBottom: "2rem",
+    gap: "0.6rem",
+    textAlign: "center"
+  }}
+>
+  <img
+    src="/sync-logo.png"
+    alt="SYNC Productions"
+    style={{
+      height: "180px",
+      width: "auto",
+      display: "block",
+      margin: "0 auto",
+      filter: "drop-shadow(0 0 20px rgba(255,255,255,0.25))"
+    }}
+  />
+  <div style={{ fontSize: "0.95rem", opacity: 0.8 }}>
+    Powered by Parlios Engine
+  </div>
+</div>
+{/* /BIG_BRAND_HEADER */}
+<main
       style={{
         minHeight: "100vh",
         padding: "3.5rem 1.5rem 4rem",
