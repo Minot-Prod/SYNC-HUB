@@ -59,7 +59,7 @@ export default function Home() {
             gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
             gap: 18
           }}>
-            <Link href="/managers" style={{
+            <Link href="/presentation" style={{
               padding: "22px",
               borderRadius: 16,
               background: "rgba(255,255,255,0.04)",
@@ -87,7 +87,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/managers" style={{
+            <Link href="/presentation" style={{
               padding: "22px",
               borderRadius: 16,
               background: "rgba(47,107,255,0.12)",
