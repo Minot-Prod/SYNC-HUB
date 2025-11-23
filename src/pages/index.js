@@ -10,7 +10,9 @@ export default function Home() {
 
       <div style={{
         minHeight: "100vh",
-        background: "radial-gradient(1200px 800px at 10% -10%, #1a2b6d 0%, rgba(0,0,0,0) 60%), radial-gradient(1000px 700px at 90% -20%, #7a1fd1 0%, rgba(0,0,0,0) 55%), #050814",
+        background:
+          "radial-gradient(1200px 800px at 10% -10%, #1a2b6d 0%, rgba(0,0,0,0) 60%), " +
+          "radial-gradient(1000px 700px at 90% -20%, #7a1fd1 0%, rgba(0,0,0,0) 55%), #050814",
         color: "white"
       }}>
         {/* BRAND HEADER */}
@@ -49,7 +51,8 @@ export default function Home() {
             Le copilote IA des équipes commerciales.
           </h1>
           <p style={{ marginTop: 14, fontSize: 18, opacity: 0.9, maxWidth: 720 }}>
-            Prépare tes RDV, gère les objections, fais tes follow-ups, et pilote ta semaine avec un cockpit IA relié à tes données.
+            Prépare tes RDV, gère les objections, fais tes follow-ups, et pilote ta semaine
+            avec un cockpit IA relié à tes données.
           </p>
 
           {/* ROLE SELECTOR */}
@@ -59,6 +62,7 @@ export default function Home() {
             gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
             gap: 18
           }}>
+            {/* Présentation SYNC */}
             <Link href="/presentation" style={{
               padding: "22px",
               borderRadius: 16,
@@ -73,6 +77,7 @@ export default function Home() {
               </div>
             </Link>
 
+            {/* Vendeurs */}
             <Link href="/vendeurs" style={{
               padding: "22px",
               borderRadius: 16,
@@ -87,7 +92,8 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/presentation" style={{
+            {/* Managers */}
+            <Link href="/managers" style={{
               padding: "22px",
               borderRadius: 16,
               background: "rgba(47,107,255,0.12)",

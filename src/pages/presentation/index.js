@@ -2,7 +2,29 @@
 
 export default function Home() {
   return (
-    <main
+    
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a><main
       style={{
         minHeight: "100vh",
         background:
@@ -707,7 +729,29 @@ const navLinkStyle = {
 
 function StepLabel({ number, title }) {
   return (
-    <div
+    
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a><div
       style={{
         display: "flex",
         alignItems: "center",
@@ -742,7 +786,29 @@ function StepLabel({ number, title }) {
 
 function WowCard({ title, before, after }) {
   return (
-    <div
+    
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a><div
       style={{
         borderRadius: "1.1rem",
         border: "1px solid rgba(148,163,184,0.45)",
@@ -803,7 +869,29 @@ function WowCard({ title, before, after }) {
 
 function SecurityPoint({ title, text }) {
   return (
-    <div
+    
+      {/* Retour au site */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          display: "inline-flex",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontWeight: 800,
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.14)",
+          background: "rgba(0,0,0,0.35)",
+          color: "white",
+          textDecoration: "none",
+          backdropFilter: "blur(6px)"
+        }}
+      >
+        ← Retour au site Sync-Hub
+      </a><div
       style={{
         padding: "1.2rem 1.25rem",
         borderRadius: "1rem",
@@ -825,4 +913,3 @@ function SecurityPoint({ title, text }) {
     </div>
   );
 }
-
