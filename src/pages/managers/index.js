@@ -42,62 +42,40 @@ export default function Managers() {
       alignItems: "center"
     }}>
 
-      {/* HEADER APP (logos centraux XXL) */}
+      {/* Header brand + retour */}
       <div style={{
         width: "100%",
         maxWidth: 1000,
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
+        gap: "1rem",
         marginTop: 10,
-        marginBottom: 24
+        marginBottom: 18
       }}>
-        <img
-          src="/sync-logo.png"
-          alt="Sync"
-          style={{
-            height: 160,
-            width: "auto",
-            filter: "drop-shadow(0 0 22px rgba(255,255,255,0.28))"
-          }}
-        />
-
-        <div style={{
-          marginTop: 8,
-          marginBottom: 6,
-          opacity: 0.55,
-          fontWeight: 800,
-          letterSpacing: 2
-        }}>
-          ×
+        <img src="/sync-logo.png" alt="Sync" style={{height:"40px",width:"auto"}} />
+        <div style={{opacity:0.5,fontSize:"0.9rem",fontWeight:600}}>×</div>
+        <img src="/parlios-logo.png" alt="Parlios" style={{height:"36px",width:"auto"}} />
+        <div style={{marginLeft:10, opacity:0.85, fontWeight:700, fontSize:14}}>
+          Propulsé par Parlios OS
         </div>
 
-        <img
-          src="/parlios-logo.png"
-          alt="Parlios"
-          style={{
-            height: 120,
-            width: "auto",
-            filter: "drop-shadow(0 0 26px rgba(255,80,80,0.45))"
-          }}
-        />
-
-        <Link href="/" style={{
-          marginTop: 14,
-          fontSize: 14,
-          opacity: 0.9,
-          textDecoration: "none",
-          color: "white",
-          padding: "8px 12px",
-          borderRadius: 999,
-          border: "1px solid rgba(255,255,255,0.12)",
-          background: "rgba(255,255,255,0.04)"
-        }}>
-          ← Retour au site Sync-Hub
-        </Link>
+        <div style={{marginLeft:"auto"}}>
+          <Link href="/" style={{
+            padding:"8px 12px",
+            borderRadius:999,
+            border:"1px solid rgba(255,255,255,0.12)",
+            background:"rgba(255,255,255,0.04)",
+            color:"white",
+            textDecoration:"none",
+            fontSize:14,
+            fontWeight:800
+          }}>
+            ← Retour au site Sync-Hub
+          </Link>
+        </div>
       </div>
 
-      {/* KPI / ROI PORTAL (dashboard only) */}
+      {/* KPI / ROI PORTAL */}
       <section style={{
         width: "100%",
         maxWidth: 1000,
@@ -107,8 +85,8 @@ export default function Managers() {
         border: "1px solid rgba(255,255,255,0.08)"
       }}>
         <div style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
-          <h1 style={{margin:0,fontSize:28,fontWeight:900}}>
-            Tableau de contrôle — KPI / ROI Sync-Hub
+          <h1 style={{margin:0,fontSize:26,fontWeight:900}}>
+            Portail KPI / ROI Sync-Hub
           </h1>
           <div style={{opacity:0.8,fontSize:14,fontWeight:600}}>
             Vue synthèse de l’utilisation et de l’impact sur l’équipe pilote.
@@ -171,7 +149,6 @@ export default function Managers() {
           </button>
         </div>
       </section>
-
     </div>
   );
 }

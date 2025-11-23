@@ -1131,25 +1131,7 @@ export default function Home() {
                 pour montrer comment, demain, une direction peut superviser ses
                 hubs IA depuis un seul endroit.
               </p>
-              <a
-                href="https://parlios-os-3a12b730.base44.app"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "0.85rem 1.6rem",
-                  borderRadius: "999px",
-                  background:
-                    "linear-gradient(90deg, rgba(96,165,250,1), rgba(244,114,182,1))",
-                  color: "white",
-                  fontWeight: 600,
-                  textDecoration: "none",
-                }}
-              >
-                Explorer Parlios OS (prototype)
-              </a>
+              
             </div>
           </div>
         </section>
@@ -1273,21 +1255,7 @@ export default function Home() {
               >
                 Ouvrir le cockpit Sync-Hub (Base44)
               </a>
-              <a
-                href="https://parlios-os-3a12b730.base44.app"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  padding: "0.9rem 1.6rem",
-                  borderRadius: "999px",
-                  border: "1px solid rgba(148,163,184,0.7)",
-                  color: "white",
-                  textDecoration: "none",
-                  fontSize: "0.95rem",
-                }}
-              >
-                Discuter d&apos;un déploiement Parlios OS
-              </a>
+              
             </div>
           </div>
         </section>
